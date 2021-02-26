@@ -1,0 +1,19 @@
+.notification {
+  height: 100%;
+  background: #f3f8ff;
+  padding-bottom: 2rem;
+
+  .app-header {
+    height: 186px;
+    background: #333366;
+
+    .content-h1 {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 35px;
+      color: #ffffff;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+.instructorPage {
+  .tools {
+    padding: 4rem 9.3rem;
+    background-color: $background;
+    &__container {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    &__wrapper {
+      border: 1px solid rgba(51, 51, 102, 0.5);
+      &:first-child {
+        border-right: none;
+      }
+      padding: 0;
+    }
+    &__photo {
+      height: 15rem;
+      padding: 5rem 0 1rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+
+      & h1 {
+        margin-top: 1rem;
+        font-weight: bold;
+        font-size: 28.4097px;
+        color: #333366;
+      }
+    }
+    &__img {
+      height: 100%;
+    }
+    &__list {
+      margin-top: 2rem;
+      list-style: none;
+
+      & li {
+        font-weight: 600;
+        color: $dark_blue;
+        padding: 0;
+        font-size: 1.1rem;
+      }
+    }
+
+    &__link {
+      text-decoration: none;
+      padding: 0.6rem 1.5rem;
+      display: block;
+      color: inherit;
+      transition: all 0.5s;
+      &:hover {
+        margin-left: 0.4rem;
+      }
+    }
+
+    &__active {
+      font-weight: 600;
+      color: white !important;
+      background-color: $dark_blue;
+    }
+  }
+
+  .tools__profile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__wrapper {
+      padding: 3.5rem 6.4rem;
+      &:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(51, 51, 102, 0.5);
+      }
+      &:nth-child(3) {
+        border-top: 1px solid rgba(51, 51, 102, 0.5);
+      }
+      & h1 {
+        font-weight: bold;
+        font-size: 26px;
+        color: $dark_blue;
+      }
+      & h3 {
+        font-weight: normal;
+        font-size: 18px;
+        color: $dark_blue;
+      }
+    }
+    &__icon {
+      color: $dark_blue;
+      padding: 1rem;
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+      cursor: pointer;
+    }
+  }
+
+  .tools__photo {
+    &__box {
+      display: flex;
+      justify-content: center;
+    }
+    &__photo {
+      height: 17rem;
+      display: flex;
+      width: 93%;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      outline-offset: 1.5rem;
+      background-color: rgba(196, 196, 196, 0.15);
+      outline: 1px solid $dark_blue;
+      margin-bottom: 4rem;
+    }
+    &__img {
+      height: 100%;
+    }
+  }
+
+  .tools__account {
+    &__label {
+      font-size: 1.1rem;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+.performance {
+  padding: 3rem 9.3rem;
+  background-color: $background;
+  font-family: 'Open Sans', sans-serif;
+
+  &__container {
+    padding: 1rem 3rem 3rem;
+    background-color: white;
+    border-radius: 3px;
+    height: 100%;
+    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.2);
+  }
+
+  &__tab {
+    color: $dark_blue;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  &__span {
+    color: $dark_blue;
+    font-size: 1.4rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+  }
+
+  &__wrapper {
+    padding: 1.6rem 0.5rem;
+  }
+
+  &__filter {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+
+  &__price {
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    margin: 0 0 1rem 1rem;
+    background-color: #f7f8fa;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+  }
+
+  &__select {
+    margin: 0 1rem 1rem 0;
+    .ant-select-selection {
+      background-color: $light_blue;
+      border: none;
+      font-size: 1rem;
+    }
+    .ant-select-selection__placeholder {
+      color: white;
+    }
+    .ant-select-arrow {
+      color: white;
+    }
+    .ant-select-selection-selected-value {
+      color: white;
+    }
+  }
+
+  &__chart {
+    height: 25rem;
+  }
+}

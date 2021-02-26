@@ -1,0 +1,16 @@
+@media only screen and (max-width: 600px) {
+  .my-cart {
+    .app-header {
+      padding: 1rem 0.5rem;
+      .nav-box {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem auto;
+
+        .content-h2 {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.contact {
+  padding: 5rem 9rem;
+  background-image: url('~assets/images/contact/bitmap.png');
+  background-size: contain;
+  &__us {
+    & h1 {
+      color: $dark_blue;
+      font-weight: 400;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    & p {
+      color: $dark_blue;
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+    }
+  }
+}

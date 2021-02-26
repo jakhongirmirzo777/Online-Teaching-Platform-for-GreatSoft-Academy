@@ -1,0 +1,22 @@
+@media only screen and (max-width: 600px) {
+  .notification {
+    .nav-block {
+      display: flex;
+      flex-direction: column;
+      .content-h1 {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .wrapper-cart {
+      padding: 1rem 1rem !important;
+
+      .content-h1 {
+        font-size: 22px;
+      }
+      .content-p {
+        font-size: 16px;
+      }
+    }
+  }
+}

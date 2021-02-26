@@ -1,0 +1,67 @@
+@media only screen and (max-width: 600px) {
+  .userprofile-container {
+    padding: 0 1rem !important;
+    .showcase {
+      padding: 0 !important;
+    }
+    .is-active {
+      background: #5d30db;
+      color: #fff;
+    }
+    .top-header {
+      border-bottom: 1px solid rgba(51, 51, 102, 0.5);
+      min-height: 7rem;
+    }
+    .top-header .content-h1 {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 26px;
+      line-height: 35px;
+      color: #333366;
+    }
+    .top-header .content-p {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 25px;
+      color: #333366;
+    }
+    .text-h1 {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 28.4097px;
+      line-height: 39px;
+      color: #333366;
+    }
+    .avatar-default {
+      background: #333366;
+    }
+
+    .data-form {
+      width: 90% !important;
+      margin: 5% auto;
+      input {
+        background: transparent;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 25px;
+        color: rgba(51, 51, 102, 0.5);
+      }
+      .data-submit {
+        background: #5d30db;
+        border-radius: 4px;
+        color: white;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 25px;
+      }
+    }
+  }
+}

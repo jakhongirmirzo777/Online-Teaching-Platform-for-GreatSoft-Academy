@@ -1,0 +1,56 @@
+.section-6 {
+  background: $light_blue;
+  padding-top: 5rem !important;
+  padding-bottom: 4rem !important;
+  position: relative;
+  overflow: hidden;
+
+  .image-ellipse {
+    position: absolute;
+    width: 464px;
+    height: 464px;
+    bottom: -70% !important;
+    left: 0 !important;
+    background-image: url('~assets/images/Ellipse.png');
+    background-repeat: no-repeat;
+  }
+
+  .text-h1 {
+    font-family: $sans;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 41px;
+    text-align: center;
+    color: $white;
+  }
+
+  .text-paragraph {
+    font-family: $sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    color: $white;
+  }
+  .btn-outline-light {
+    font-family: $sans;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    padding: 0.5rem 6rem;
+    margin: 2rem auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .section-6 {
+    padding: 4rem 2rem !important;
+
+    .image-ellipse {
+      display: none;
+    }
+  }
+}

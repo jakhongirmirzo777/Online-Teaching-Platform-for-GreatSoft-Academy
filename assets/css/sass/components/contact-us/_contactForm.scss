@@ -1,0 +1,48 @@
+.contact {
+  &__container {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__input__group {
+    margin-bottom: 2rem;
+  }
+
+  &__form__label {
+    display: block;
+    font-size: 1rem;
+    color: $dark_black;
+    font-weight: bold;
+  }
+
+  &__form__input {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__form__textArea {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__btn {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background-color: $light_blue;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}

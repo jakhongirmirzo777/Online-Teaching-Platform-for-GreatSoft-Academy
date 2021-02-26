@@ -1,0 +1,33 @@
+.landPage {
+  &__container {
+    height: 100%;
+    padding: 3rem;
+    background-color: $background;
+  }
+
+  &__box {
+    background-color: #dae6eb;
+    padding: 1rem 2rem;
+    border: 1px solid #b6c2c7;
+    border-radius: 2px;
+  }
+
+  &__label {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: $dark_blue;
+  }
+
+  &__input {
+    margin-bottom: 0.7rem;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: flex-end !important;
+  }
+
+  &__group {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,170 @@
+.pricing {
+  &__row {
+    margin-bottom: 10rem;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8rem;
+    flex-wrap: wrap;
+  }
+
+  &__box h1 {
+    font-family: $sans;
+    color: $dark_blue;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  &__dropdown p {
+    font-family: $sans;
+    color: $dark_blue;
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__card {
+    font-family: $sans;
+    margin: 0 1rem 3rem;
+    background-color: $white;
+    border-radius: 30px;
+    box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  &__active__card {
+    transform: scale(1.2, 1.3);
+  }
+
+  &__tarif {
+    background-color: $light_blue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: $white;
+  }
+
+  &__content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22.9687px;
+    padding: 1.25rem 3.875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__price {
+    padding: 1.25rem 3.875rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: baseline;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    color: #202020;
+  }
+
+  &__price span:nth-child(1) {
+    position: absolute;
+    top: 16%;
+    left: 23%;
+  }
+  &__price span:nth-child(2) {
+    font-size: 69.1743px;
+    line-height: 94px;
+    color: $dark_blue;
+    font-weight: bold;
+  }
+
+  &__price span:nth-child(4) {
+    position: absolute;
+    top: 19%;
+    left: 52%;
+  }
+
+  &__button__box {
+    padding: 0 4rem;
+  }
+
+  &__button,
+  &__button:link,
+  &__button:visited {
+    display: block;
+    text-align: center;
+    margin: 2rem 0 5rem;
+    color: $light_blue;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid $light_blue;
+    padding: 0.5rem 0.4rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  &__button:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  &__button:active {
+    transform: translateY(-0.1rem);
+  }
+
+  &__active__button,
+  &__active__button:link,
+  &__active__button:visited {
+    background: $orange;
+    color: $white;
+    border: none;
+  }
+
+  &__details__box {
+    font-family: $sans;
+    font-style: normal;
+    font-weight: bold;
+    margin: 1rem;
+  }
+
+  &__details__box h3 {
+    font-size: 18px;
+    color: #202020;
+    margin-bottom: 0.7rem;
+  }
+
+  &__details__list {
+    list-style: none;
+  }
+
+  &__details__item {
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    color: $dark_blue;
+  }
+
+  &__details__item .check {
+    font-size: 14px;
+    color: $dark_blue;
+    margin-right: 0.4rem;
+  }
+
+  &__details__item .check__gold {
+    font-size: 14px;
+    color: $orange;
+    margin-right: 0.4rem;
+  }
+}

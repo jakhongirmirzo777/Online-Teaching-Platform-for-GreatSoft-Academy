@@ -1,0 +1,133 @@
+.form {
+  &__container {
+    background-color: transparent;
+    font-family: $sans;
+    font-style: normal;
+  }
+
+  &__switch__box {
+    padding: 1.2rem 3rem;
+    border: 2px solid $dark_white;
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: $tertiary_white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  &__search button {
+    background-color: $white;
+    padding: 0.6rem 1rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17rem;
+    border-radius: 5px;
+    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    font-size: 16px;
+    color: $dark_blue;
+    transition: all 0.2s;
+  }
+
+  &__search button:hover {
+    background-color: #f3f3f3;
+  }
+
+  &__search button:focus {
+    outline: none;
+  }
+
+  &__search__img {
+    height: 2.1rem;
+    float: left;
+    margin-right: 1rem;
+  }
+
+  &__wrapper {
+    padding: 2.5rem 3.75rem;
+    border-radius: 0px 0px 5px 5px !important;
+    color: $darkest_black;
+    border-left: 2px solid $dark_white;
+    border-right: 2px solid $dark_white;
+    border-bottom: 2px solid $dark_white;
+    z-index: 40 !important;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  &__content h1 {
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+
+  &__button h4 {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: $light_blue;
+    margin: 2rem 0;
+  }
+
+  &__content__p {
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &__button p {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 2.5rem;
+  }
+
+  &__button {
+    text-align: center;
+  }
+
+  &__line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  &__line span {
+    width: 45%;
+    height: 1.5px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  &__link {
+    &,
+    &:link,
+    &:visited {
+      text-decoration: none;
+      transition: all 0.2s;
+      color: $light_blue;
+    }
+  }
+}

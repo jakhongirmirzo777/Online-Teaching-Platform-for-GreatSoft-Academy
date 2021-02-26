@@ -1,0 +1,142 @@
+@media only screen and (max-width: 75em) {
+  .instructorsPage {
+    .header__instructor {
+      &__container {
+        padding: 7.9rem 4rem 12.2rem;
+      }
+    }
+
+    .instructors__content {
+      padding: 3rem 4rem 6.75rem;
+    }
+
+    .process {
+      &__container {
+        padding: 0 4rem 6.75rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 62em) {
+  .instructorsPage {
+    .header__instructor {
+      &__container {
+        padding: 8rem;
+        background-image: none;
+        background-color: $background;
+        & h1 {
+          margin: 0;
+        }
+        & p {
+          margin: 0;
+        }
+      }
+
+      &__link {
+        margin: 0;
+        margin-top: 1rem;
+      }
+    }
+
+    .instructors__content {
+      padding: 3rem 8rem 5.75rem;
+    }
+
+    .process {
+      &__container {
+        padding: 0 8rem 6.75rem;
+      }
+      &__dotes {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .instructorsPage {
+    .header__instructor {
+      &__container {
+        padding: 6rem 4rem;
+        & h1 {
+          font-size: 27px;
+        }
+        & p {
+          font-size: 20px;
+        }
+      }
+      &__link {
+        font-size: 16px;
+      }
+    }
+
+    .instructors__content {
+      padding: 3rem 4rem 3.75rem;
+      & h2 {
+        font-size: 24px;
+      }
+      & li {
+        font-size: 16px;
+      }
+    }
+
+    .process {
+      &__container {
+        padding: 0 4rem 4.75rem;
+      }
+      &__wrapper {
+        & h1 {
+          font-size: 30px;
+          margin-bottom: 3.2rem;
+        }
+      }
+      &__box {
+        & span {
+          padding: 1rem 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 26.8em) {
+  .instructorsPage {
+    .header__instructor {
+      &__container {
+        padding: 4rem 2rem;
+        & h1 {
+          font-size: 24px;
+        }
+        & p {
+          font-size: 18px;
+        }
+        & li {
+          font-size: 14px;
+        }
+      }
+      &__link {
+        font-size: 14px;
+      }
+    }
+
+    .instructors__content {
+      padding: 3rem 2rem 1.75rem;
+      & h2 {
+        font-size: 22px;
+      }
+    }
+
+    .process {
+      &__container {
+        padding: 0 0rem 2.75rem;
+      }
+      &__wrapper {
+        & h1 {
+          font-size: 28px;
+          margin-bottom: 2.2rem;
+        }
+      }
+    }
+  }
+}

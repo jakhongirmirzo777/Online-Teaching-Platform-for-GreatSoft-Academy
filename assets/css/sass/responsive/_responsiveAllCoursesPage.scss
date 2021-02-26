@@ -1,0 +1,33 @@
+@media only screen and (max-width: 75em) {
+  .allCourses {
+    padding: 4rem 6rem;
+    &__container {
+      & h1 {
+        font-size: 3.5rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 62em) {
+  .allCourses {
+    padding: 3rem 5rem;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .allCourses {
+    padding: 2rem 4rem;
+  }
+}
+
+@media only screen and (max-width: 26.8em) {
+  .allCourses {
+    padding: 2rem;
+    &__container {
+      & h1 {
+        font-size: 3rem;
+      }
+    }
+  }
+}

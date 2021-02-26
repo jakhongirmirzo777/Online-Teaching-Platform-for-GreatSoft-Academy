@@ -1,0 +1,156 @@
+@media only screen and (max-width: 62em) {
+  .about {
+    .promo {
+      &__box {
+        background-color: transparent;
+        padding: 3rem 5rem;
+        text-align: center;
+      }
+      &__heading__primary {
+        font-size: 2.5rem;
+        color: $light_blue;
+      }
+      &__paragraph {
+        color: $light_blue;
+        font-size: 1.3rem;
+      }
+      &__short__video {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        padding: 0 2rem;
+
+        & .video-js {
+          border-radius: 15px;
+          position: relative;
+          top: 0;
+          left: 0;
+          overflow: hidden;
+          height: 300px !important;
+        }
+      }
+    }
+
+    .instructors {
+      position: relative;
+      z-index: 20;
+      padding: 2rem 7rem;
+      & h1 {
+        font-size: 3.5rem;
+      }
+      &__box {
+        & h1 {
+          font-size: 3.5rem;
+        }
+
+        & p {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .partners {
+      padding: 1rem 4rem;
+      & h1 {
+        font-size: 3.5rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .about {
+    .promo {
+      &__box {
+        background-color: transparent;
+        padding: 3rem 4rem;
+        text-align: center;
+      }
+      &__heading__primary {
+        font-size: 2rem;
+        color: $light_blue;
+      }
+      &__paragraph {
+        color: $light_blue;
+        font-size: 1.2rem;
+      }
+      &__short__video {
+        & .video-js {
+          height: 280px !important;
+        }
+      }
+    }
+
+    .instructors {
+      padding: 2rem 6rem;
+      & h1 {
+        font-size: 3rem;
+      }
+      &__box {
+        & h1 {
+          font-size: 3rem;
+        }
+
+        & p {
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .partners {
+      padding: 1rem 3rem;
+      & h1 {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 30em) {
+  .about {
+    .promo {
+      &__box {
+        padding: 3rem 2rem;
+      }
+      &__heading__primary {
+        font-size: 1.6rem;
+        color: $light_blue;
+      }
+      &__paragraph {
+        color: $light_blue;
+        font-size: 1rem;
+      }
+      &__short__video {
+        & .video-js {
+          height: 250px !important;
+        }
+      }
+    }
+
+    .instructors {
+      padding: 4rem 3.7rem;
+      align-items: center;
+      & h1 {
+        font-size: 2.5rem;
+      }
+      &__box {
+        & h1 {
+          font-size: 2.5rem;
+        }
+
+        & p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .partners {
+      padding: 1rem 1rem;
+      & h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}

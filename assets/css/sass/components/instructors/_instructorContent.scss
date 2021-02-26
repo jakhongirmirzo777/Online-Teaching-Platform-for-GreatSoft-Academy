@@ -1,0 +1,23 @@
+.instructors__content {
+  font-family: $sans;
+  font-style: normal;
+  color: $dark_blue;
+  padding: 3rem 8.2rem 6.75rem;
+
+  & h2 {
+    font-weight: $bold;
+    font-size: 26px;
+    margin-bottom: 1.5rem;
+  }
+
+  & ul {
+    color: $dark_blue;
+    list-style: inside;
+  }
+
+  & li {
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 0.6rem;
+  }
+}

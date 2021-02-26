@@ -1,0 +1,54 @@
+.app-footer {
+  padding: 50px 137px;
+  background: #f3f8ff;
+}
+
+.app-footer .map-yandex {
+  position: relative;
+}
+
+.app-footer .footer-map {
+  width: 380px;
+  height: 380px;
+  position: absolute;
+  border: 10px solid #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  top: -80%;
+  left: -50%;
+  border-radius: 50%;
+}
+
+.app-footer section.ymap-container {
+  width: 100%;
+  height: 100%;
+}
+
+.app-footer .text-h1 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #333366;
+  margin: 3rem auto 2rem auto;
+}
+
+.app-footer .col-md-2 ul li {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 21px;
+  color: rgba(51, 51, 102, 0.6);
+}
+
+.app-footer .social-icons li a {
+  width: 25.2px;
+  height: 25.2px;
+  border-radius: 2.88px;
+  background: #5d30db;
+  color: white;
+  padding: 0.2rem 0.4rem;
+}
+/*# sourceMappingURL=app-footer.css.map */

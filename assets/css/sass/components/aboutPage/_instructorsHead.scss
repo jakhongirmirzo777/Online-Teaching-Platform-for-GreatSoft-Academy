@@ -1,0 +1,49 @@
+.instructors {
+  padding: 2rem 9rem;
+  & h1 {
+    font-size: 4.5rem;
+    color: $light_blue;
+    font-family: $sans;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  &__column__margin {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__box {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  &__box h1 {
+    font-size: 4.5rem;
+    color: $orange;
+    font-family: $sans;
+    font-weight: $bold;
+  }
+
+  &__box p {
+    font-size: 2rem;
+    color: $dark_blue;
+    font-weight: 600;
+    font-family: $sans;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 2.5px 2px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5d30db;
+  border-radius: 5px;
+}
