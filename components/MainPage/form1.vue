@@ -1,12 +1,12 @@
 <template>
   <div class="form-bootstrap">
-    <b-form @submit="onSubmit">
+    <b-form @submit.prevent="getCode">
       <h1 class="text-h1 mb-3">Sign Up form</h1>
       <b-form-group id="input-group-1" label-for="input-1">
         <b-form-input
           class="bg-transparent input-field"
           id="input-1"
-          v-model="form.firstname"
+          v-model="form.first_name"
           type="text"
           placeholder="First Name"
           required
@@ -16,7 +16,7 @@
         <b-form-input
           class="bg-transparent input-field"
           id="input-2"
-          v-model="form.lastname"
+          v-model="form.last_name"
           type="text"
           placeholder="Last Name"
           required
@@ -25,10 +25,11 @@
       <b-form-group id="input-group-3" label-for="input-3">
         <b-form-input
           id="input-3"
-          v-model="form.email"
+          v-model="phone_number"
+          v-mask="'+998 ## ### ## ##'"
           class="bg-transparent input-field"
-          type="email"
-          placeholder="Email"
+          type="tel"
+          placeholder="Phone number"
           required
         ></b-form-input>
       </b-form-group>
@@ -43,10 +44,10 @@
           required
         ></b-form-input>
       </b-form-group>
-
       <b-button type="submit" class="button-submit">
         Start learning now
       </b-button>
+      <check-code @codeTransfer="checkCode" />
     </b-form>
     <div class="container-fluid">
       <div class="row">
@@ -83,20 +84,84 @@
 </template>
 
 <script>
+import Toast from '~/utils/toast.js'
+import checkCode from '~/components/Sign/checkCode'
 export default {
+  components: { checkCode },
+  mixins: [Toast],
   data() {
     return {
       form: {
-        firstname: '',
-        lastname: '',
-        email: '',
-        password: null,
+        first_name: '',
+        last_name: '',
+        password: '',
+        token: '',
       },
+      phone_number: '',
     }
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault()
+    async getCode() {
+      await this.$axios
+        .post('user/send/code/', {
+          phone_number: this.phone_number.replace(/ /g, ''),
+        })
+        .then((res) => {
+          console.log('[Sent code]', res.data.code)
+          this.$nextTick(() => {
+            this.$bvModal.show('modal-check-code')
+          })
+        })
+        .catch((err) => {
+          this.showToast('danger', 'Xatolik', "Anketa to'gri to'ldirilmagan")
+        })
+    },
+    async checkCode(payload) {
+      await this.$axios
+        .post('user/check/code/', {
+          phone_number: this.phone_number.replace(/ /g, ''),
+          code: payload,
+        })
+        .then((res) => {
+          this.form.token = res.data.token
+        })
+        .catch((err) => {
+          console.log(err)
+          this.showToast('danger', 'Xatolik', 'Kod xato terilgan')
+        })
+
+      if (this.form.token != '' && this.form.token != null) {
+        await this.$axios
+          .post('user/', {
+            phone_number: this.phone_number.replace(/ /g, ''),
+            ...this.form,
+          })
+          .then((res) => {
+            this.$auth.loginWith('local', {
+              data: {
+                phone_number: this.phone_number.replace(/ /g, ''),
+                ...this.form,
+              },
+            })
+            this.$store.dispatch('instructorsPage/initPhoneNumber', {
+              phone_number: this.phone_number.replace(/ /g, ''),
+              password: this.form.password,
+            })
+            this.$router.push(this.localePath({ name: 'index' }))
+            this.$store.dispatch('course/initToastShow', true)
+          })
+          .catch((err) => console.log('[USER ERROR]', err))
+        this.form = {
+          first_name: '',
+          last_name: '',
+          password: '',
+          token: '',
+        }
+        this.phone_number = ''
+      }
+      this.$nextTick(() => {
+        this.$bvModal.hide('modal-check-code')
+      })
     },
   },
 }

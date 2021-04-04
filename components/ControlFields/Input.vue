@@ -1,7 +1,17 @@
 <template>
   <div class="inputControl">
     <input
-      v-if="controlType === 'input'"
+      v-if="controlType === 'input' && mask"
+      v-bind="$attrs"
+      :value="value"
+      v-mask="'+998 ## ### ## ##'"
+      @input="$emit('input', $event.target.value)"
+      :placeholder="inputPlaceholder"
+      :type="type"
+      required
+    />
+    <input
+      v-if="controlType === 'input' && !mask"
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', $event.target.value)"
@@ -55,6 +65,11 @@ export default {
 
     slotLabel: {
       type: String,
+    },
+
+    mask: {
+      type: Boolean,
+      default: false,
     },
   },
 }

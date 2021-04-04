@@ -11,8 +11,9 @@
       <Input v-model="form.first_name" inputPlaceholder="First Name" />
       <Input v-model="form.last_name" inputPlaceholder="Last Name" />
       <Input
-        v-model="form.phone_number"
+        v-model="phone_number"
         type="tel"
+        :mask="true"
         inputPlaceholder="Phone number"
       />
       <Input
@@ -25,6 +26,7 @@
           type="file"
           name="file"
           id="file"
+          accept=".doc, .pdf"
           class="inputControl__file"
           @change="valChange"
         />
@@ -72,13 +74,13 @@ export default {
       form: {
         first_name: '',
         last_name: '',
-        phone_number: '',
         password: '',
         portfolio: '',
         description: '',
         token: '',
         resume: '',
       },
+      phone_number: '',
       file: '',
     }
   },
@@ -92,7 +94,7 @@ export default {
       try {
         await this.$axios
           .post('user/send/code/', {
-            phone_number: this.form.phone_number,
+            phone_number: this.phone_number.replace(/ /g, ''),
           })
           .then((res) => {
             console.log('[Sent code]', res.data.code)
@@ -109,7 +111,7 @@ export default {
       try {
         await this.$axios
           .post('user/check/code/', {
-            phone_number: this.form.phone_number,
+            phone_number: this.phone_number.replace(/ /g, ''),
             code: payload,
           })
           .then((res) => {
@@ -121,8 +123,10 @@ export default {
           formData.append('file', this.file)
           const resResume = await this.$axios.post('mentor/resume/', formData)
           this.form.resume = resResume.data.file
-          const resCreate = await this.$axios.post('mentor/create/', this.form)
-          console.log(resCreate.data)
+          const resCreate = await this.$axios.post('mentor/create/', {
+            phone_number: this.phone_number.replace(/ /g, ''),
+            ...this.form,
+          })
           this.$nextTick(() => {
             this.$bvModal.hide('modal-check-code')
           })
@@ -131,13 +135,14 @@ export default {
           this.form = {
             first_name: '',
             last_name: '',
-            phone_number: '',
+
             password: '',
             resume: '',
             portfolio: '',
             description: '',
             token: '',
           }
+          this.phone_number = ''
           this.file = ''
         }
       } catch (err) {

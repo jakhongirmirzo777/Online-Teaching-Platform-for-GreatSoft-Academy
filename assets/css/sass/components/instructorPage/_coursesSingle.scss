@@ -194,6 +194,15 @@
         padding: 1rem;
         margin: 0.5rem 0;
       }
+      &__close {
+        display: inline-block;
+        color: gray;
+        padding: 0;
+        cursor: pointer;
+        font-size: 1.8rem;
+        background-color: transparent;
+        margin: 0 0 0.3rem;
+      }
     }
 
     &__file {
@@ -238,6 +247,23 @@
       background-color: $orange;
       padding: 0.1rem 0.5rem;
       font-size: 1rem;
+    }
+
+    &__progress__add {
+      z-index: 5;
+      display: none;
+      margin-top: -2.34rem;
+    }
+    &__progress__add__show {
+      display: block;
+    }
+    &__progress__edit {
+      z-index: 5;
+      display: none;
+      margin-top: -2.7rem;
+    }
+    &__progress__edit__show {
+      display: block;
     }
   }
 }

@@ -35,9 +35,6 @@
                     <h2>
                       {{ item.course_name }}
                     </h2>
-                    <p>
-                      {{ item.description }}
-                    </p>
                     <h3>Prices: {{ item.price }} UZS</h3>
                     <!-- <h3>Prices:</h3> -->
                     <!-- <ul>
@@ -60,17 +57,21 @@
 import Spinner from '~/utils/spinner.js'
 export default {
   mixins: [Spinner],
+  created() {
+    this.isLoadingToggle()
+  },
   computed: {
     getAllCoursesData() {
       const courseData = []
-      const allCourseDirections = this.$store.getters[
-        'course/getAllCourseData'
-      ].map((item) => item.yonalish)
+      const allCourseDirections = this.$store.getters['course/getAllCourseData']
+        .filter((item) => item.is_checked === true)
+        .map((item) => item.yonalish)
       const allCourses = this.$store.getters['course/getAllCourseData']
-      const iniqueDirections = [...new Set(allCourseDirections)]
-      for (let i = 0; i < iniqueDirections.length; i++) {
+      const uniqueDirections = [...new Set(allCourseDirections)]
+      for (let i = 0; i < uniqueDirections.length; i++) {
         const singleCourseDirection = allCourses.filter(
-          (item) => item.yonalish == iniqueDirections[i]
+          (item) =>
+            item.yonalish == uniqueDirections[i] && item.is_checked === true
         )
         courseData.push(singleCourseDirection)
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="landPage__container">
+  <div :key="count" class="landPage__container">
     <div class="landPage__box">
       <transition name="fade">
         <form @submit.prevent="submitLand">
@@ -61,21 +61,18 @@
               class="landPage__input"
               id="input-live-3"
               v-model="courseDetail.requirement_en"
-              placeholder="Enter course requirement in English"
-              trim
+              placeholder="Enter all course requirements in English by adding comma  between"
               required
             ></b-form-input>
             <b-form-input
               class="landPage__input"
               v-model="courseDetail.requirement_ru"
-              placeholder="Enter course requirement in Russian"
-              trim
+              placeholder="Enter all course requirements in Russian by adding comma  between"
             ></b-form-input>
             <b-form-input
               class="landPage__input"
               v-model="courseDetail.requirement_uz"
-              placeholder="Enter course requirement in Uzbek"
-              trim
+              placeholder="Enter all course requirements in Uzbek by adding comma between"
             ></b-form-input>
           </div>
           <div class="landPage__group" role="group">
@@ -86,52 +83,76 @@
               class="landPage__input"
               id="input-live-4"
               v-model="courseDetail.content_en"
-              placeholder="Enter course content in English"
-              trim
+              placeholder="Write about what inludes your course in English by adding comma between"
               required
             ></b-form-input>
             <b-form-input
               class="landPage__input"
               v-model="courseDetail.content_ru"
-              placeholder="Enter course content in Russian"
-              trim
+              placeholder="Write about what inludes your course in Russian by adding comma between"
             ></b-form-input>
             <b-form-input
               class="landPage__input"
               v-model="courseDetail.content_uz"
-              placeholder="Enter course content in Uzbek"
-              trim
+              placeholder="Write about what inludes your course in Uzbek by adding comma between"
             ></b-form-input>
           </div>
           <div class="landPage__group" role="group">
             <label class="landPage__label" for="input-live-5"
               >Course Promo video and poster:</label
             >
-            <b-form-file
-              class="landPage__input"
-              browse-text="Upload"
-              id="input-live-5"
-              size="md"
-              :placeholder="
-                courseDetail.promo_video
-                  ? courseDetail.promo_video
-                  : 'No video choosen'
-              "
-              @change="changeVideo"
-            ></b-form-file>
-            <b-form-file
-              class="landPage__input"
-              browse-text="Upload"
-              size="md"
-              :placeholder="
-                courseDetail.promo_image
-                  ? courseDetail.promo_image
-                  : 'No image choosen'
-              "
-              @change="changeImage"
-            ></b-form-file>
+            <div class="landPage__progress__box">
+              <b-form-file
+                class="landPage__input"
+                browse-text="Upload video"
+                id="input-live-5"
+                size="md"
+                accept=".mp4, .mkv"
+                :placeholder="promoVidName"
+                @change="changeVideo"
+              ></b-form-file>
+              <div
+                class="landPage__progress"
+                :class="{ landPage__progress__show: progressShow1 }"
+              >
+                <a-progress
+                  :percent="progressValue1"
+                  :show-info="false"
+                  :stroke-color="{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                  }"
+                  :strokeWidth="34.3"
+                  status="active"
+                />
+              </div>
+            </div>
+            <div class="landPage__progress__box">
+              <b-form-file
+                class="landPage__input"
+                browse-text="Upload image"
+                size="md"
+                accept=".jpg, .jpeg, .png"
+                :placeholder="promoImgName"
+                @change="changeImage"
+              ></b-form-file>
+              <div
+                class="landPage__progress"
+                :class="{ landPage__progress__show: progressShow2 }"
+              >
+                <a-progress
+                  :percent="progressValue2"
+                  :show-info="false"
+                  :stroke-color="{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                  }"
+                  :strokeWidth="34.3"
+                  status="active"
+                />
+              </div>
+            </div>
           </div>
-          <h1>{{ courseData }}</h1>
           <div class="landPage__group d-flex justify-center" role="group">
             <b-button type="submit" size="lg" variant="primary">Save</b-button>
           </div>
@@ -142,6 +163,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+Vue.use(Antd)
 export default {
   props: {
     courseData: {
@@ -150,6 +175,11 @@ export default {
   },
   data() {
     return {
+      count: 1,
+      progressShow1: false,
+      progressShow2: false,
+      progressValue1: 0,
+      progressValue2: 0,
       courseDetail: {
         id: this.courseData.id,
         course_name_en: this.courseData.course_name_en
@@ -189,26 +219,135 @@ export default {
           ? this.courseData.content_uz
           : '',
       },
-      // promo_video: this.courseData.promo_video
-      //     ? this.courseData.promo_video
-      //     : '',
-      //   promo_image: this.courseData.promo_image
-      //     ? this.courseData.promo_image
-      //     : '',
+      promoVidName: this.courseData.promo_video_name
+        ? this.courseData.promo_video_name
+        : 'No video choosen',
+      promoImgName: this.courseData.promo_image_name
+        ? this.courseData.promo_image_name
+        : 'No image choosen',
     }
   },
+
   methods: {
-    changeVideo(event) {
-      this.courseDetail.promo_video = event.target.files[0]
+    randomValue() {
+      this.value = Math.random() * this.max
     },
-    changeImage(event) {
-      this.courseDetail.promo_image = event.target.files[0]
+    async changeVideo(event) {
+      try {
+        const videoName = event.target.files[0].name
+        const instructorCredentials = this.$store.state.instructorsPage
+          .mentorData
+        const formData = new FormData()
+        formData.append('promo_video', event.target.files[0])
+        const resAccess = await this.$axios.post(
+          'token/',
+          instructorCredentials
+        )
+        if (resAccess.data.access) {
+          this.progressShow1 = true
+          const promoVideo = this.$axios.patch(
+            `course/${this.$route.params.id}/`,
+            formData,
+            {
+              headers: { Authorization: `Bearer ${resAccess.data.access}` },
+              onUploadProgress: (uploadEvent) => {
+                this.progressValue1 = Math.round(
+                  (uploadEvent.loaded / uploadEvent.total) * 100
+                )
+              },
+            }
+          )
+          const promoVideoName = this.$axios.patch(
+            `course/${this.$route.params.id}/`,
+            { promo_video_name: videoName },
+            {
+              headers: { Authorization: `Bearer ${resAccess.data.access}` },
+            }
+          )
+          await Promise.all([promoVideo, promoVideoName]).then((results) => {
+            this.progressShow1 = false
+            this.progressValue1 = 0
+          })
+        }
+        this.$store
+          .dispatch(
+            'instructorsCurriculum/initAllSections',
+            this.$route.params.id
+          )
+          .then((res) => {
+            this.updateKey()
+          })
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async changeImage(event) {
+      try {
+        const imageName = event.target.files[0].name
+        const instructorCredentials = this.$store.state.instructorsPage
+          .mentorData
+        const formData = new FormData()
+        formData.append('promo_image', event.target.files[0])
+        const resAccess = await this.$axios.post(
+          'token/',
+          instructorCredentials
+        )
+        if (resAccess.data.access) {
+          this.progressShow2 = true
+          const promoImage = this.$axios.patch(
+            `course/${this.$route.params.id}/`,
+            formData,
+            {
+              headers: { Authorization: `Bearer ${resAccess.data.access}` },
+              onUploadProgress: (uploadEvent) => {
+                this.progressValue2 = Math.round(
+                  (uploadEvent.loaded / uploadEvent.total) * 100
+                )
+              },
+            }
+          )
+          const promoImageName = this.$axios.patch(
+            `course/${this.$route.params.id}/`,
+            { promo_image_name: imageName },
+            {
+              headers: { Authorization: `Bearer ${resAccess.data.access}` },
+            }
+          )
+          await Promise.all([promoImage, promoImageName]).then((results) => {
+            this.progressShow2 = false
+            this.progressValue2 = 0
+          })
+        }
+        this.$store
+          .dispatch(
+            'instructorsCurriculum/initAllSections',
+            this.$route.params.id
+          )
+          .then((res) => {
+            this.updateKey()
+          })
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    updateKey() {
+      this.count++
+      this.promoVidName = this.courseData.promo_video_name
+        ? this.courseData.promo_video_name
+        : 'No video choosen'
+      this.promoImgName = this.courseData.promo_image_name
+        ? this.courseData.promo_image_name
+        : 'No image choosen'
     },
     submitLand() {
-      this.$store.dispatch(
-        'instructorsLandingPage/addLandPage',
-        this.courseDetail
-      )
+      this.$store
+        .dispatch('instructorsLandingPage/addLandPage', {
+          courseId: this.$route.params.id,
+          courseDetail: this.courseDetail,
+        })
+        .then((res) => {
+          this.updateKey()
+        })
     },
   },
 }

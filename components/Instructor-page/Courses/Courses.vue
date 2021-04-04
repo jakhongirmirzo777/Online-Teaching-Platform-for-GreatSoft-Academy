@@ -1,60 +1,64 @@
 <template>
-  <div class="courses__container">
+  <div :key="update" class="courses__container">
     <div class="courses__header">
       <h1>All courses</h1>
       <button @click="addCourse">+New course</button>
     </div>
-    <div
-      v-if="modalToggle"
-      @click.self="modalToggle = !modalToggle"
-      class="courses__modal"
-    >
-      <form class="courses__form" @submit.prevent="createCourse">
-        <span class="form__close" @click="modalToggle = !modalToggle"
-          >&times;</span
-        >
-        <h1>
-          It's ok if you can't think of a good title now. You can change it
-          later.
-        </h1>
-        <div class="form__group">
-          <label for="title">Title:</label>
-          <input
-            required
-            autocomplete="off"
-            v-model="courseData.course_name"
-            placeholder="Title"
-            name="title"
-            type="text"
-          />
-        </div>
-        <div class="form__group">
-          <label for="direction">Choose course's direction:</label>
-          <b-form-select
-            size="lg"
-            class="courses__container__select"
-            id="direction"
-            v-model="courseData.yonalish"
-            :options="options"
-          ></b-form-select>
-        </div>
-        <button type="submit">Create</button>
-      </form>
-    </div>
-    <div
-      v-if="deleteToggler"
-      @click.self="deleteToggler = !deleteToggler"
-      class="courses__modal"
-    >
-      <form class="courses__form" @submit.prevent="proveDeleteCourse">
-        <span class="form__close" @click="deleteToggler = !deleteToggler"
-          >&times;</span
-        >
-        <h1>Are you sure to delete this course?</h1>
-        <button type="submit">Yes</button>
-        <button @click="deleteToggler = !deleteToggler">No</button>
-      </form>
-    </div>
+    <transition name="fadeModal">
+      <div
+        v-if="modalToggle"
+        @click.self="modalToggle = !modalToggle"
+        class="courses__modal"
+      >
+        <form class="courses__form" @submit.prevent="createCourse">
+          <span class="form__close" @click="modalToggle = !modalToggle"
+            >&times;</span
+          >
+          <h1>
+            It's ok if you can't think of a good title now. You can change it
+            later.
+          </h1>
+          <div class="form__group">
+            <label for="title">Title:</label>
+            <input
+              required
+              autocomplete="off"
+              v-model="courseData.course_name"
+              placeholder="Title"
+              name="title"
+              type="text"
+            />
+          </div>
+          <div class="form__group">
+            <label for="direction">Choose course's direction:</label>
+            <b-form-select
+              size="lg"
+              class="courses__container__select"
+              id="direction"
+              v-model="courseData.yonalish"
+              :options="options"
+            ></b-form-select>
+          </div>
+          <button type="submit">Create</button>
+        </form>
+      </div>
+    </transition>
+    <transition name="fadeModal">
+      <div
+        v-if="deleteToggler"
+        @click.self="deleteToggler = !deleteToggler"
+        class="courses__modal"
+      >
+        <form class="courses__form" @submit.prevent="proveDeleteCourse">
+          <span class="form__close" @click="deleteToggler = !deleteToggler"
+            >&times;</span
+          >
+          <h1>Are you sure to delete this course?</h1>
+          <button type="submit">Yes</button>
+          <button @click="deleteToggler = !deleteToggler">No</button>
+        </form>
+      </div>
+    </transition>
     <div v-if="allMentorCourses != undefined">
       <div
         v-for="(course, i) in allMentorCourses"
@@ -76,14 +80,13 @@
                 ? localePath(`/instructor-page/courses/${course.id}`)
                 : localePath(`/instructor-page/courses/`)
             "
-            >Edit</nuxt-link
           >
-          <button
+            <i class="fas fa-pencil-alt" />
+          </nuxt-link>
+          <i
             @click="deleteCourse(course.id)"
-            class="courses__edit__delete"
-          >
-            Delete
-          </button>
+            class="courses__edit__delete far fa-trash-alt"
+          />
         </div>
       </div>
     </div>
@@ -99,12 +102,13 @@
 export default {
   data() {
     return {
+      update: 1,
       modalToggle: false,
       deleteToggler: false,
       courseData: {
         yonalish: 'Frontend Development',
         course_name: '',
-        mentors: this.$auth.user.mentor.id,
+        mentors: [this.$auth.user.mentor.id],
       },
       options: [
         { value: 'Frontend Development', text: 'Frontend Development' },
@@ -124,18 +128,23 @@ export default {
       this.modalToggle = true
     },
     createCourse() {
+      this.$store
+        .dispatch('instructorsPage/createCourse', this.courseData)
+        .then((res) => {
+          this.courseData.yonalish = 'Frontend Development'
+          this.courseData.course_name = ''
+          this.update++
+        })
       this.modalToggle = false
-      this.$store.dispatch('instructorsPage/createCourse', this.courseData)
-      this.courseData = {
-        course_name: '',
-      }
     },
     deleteCourse(id) {
       this.id = id
       this.deleteToggler = true
     },
     proveDeleteCourse() {
-      this.$store.dispatch('instructorsPage/initDeleteCourse', this.id)
+      this.$store
+        .dispatch('instructorsPage/initDeleteCourse', this.id)
+        .then((res) => this.update++)
       this.id = null
       this.deleteToggler = false
     },
@@ -149,4 +158,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.fadeModal-enter-active,
+.fadeModal-leave-active {
+  transition: opacity 0.3s;
+}
+.fadeModal-enter,
+.fadeModal-leave-to {
+  opacity: 0;
+}
+</style>

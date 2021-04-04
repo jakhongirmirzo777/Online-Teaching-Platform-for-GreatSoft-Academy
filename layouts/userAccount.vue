@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Nuxt  />
+  <div style="min-height: 100vh; height: 100%">
+    <Nuxt />
     <scroll-up />
   </div>
 </template>

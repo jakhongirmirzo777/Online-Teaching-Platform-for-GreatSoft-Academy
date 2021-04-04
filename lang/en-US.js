@@ -4,11 +4,35 @@ export default {
     PlansAndPricing: 'Plans & pricing',
     Careers: 'Careers',
     AboutUs: 'About us',
-    Partner: 'Become partner',
+    Partner: 'Become a partner',
     ContactUs: 'Contact us',
+    InstructorMain: 'Become an instructor',
     Instructor: 'Instructor profile',
     logIn: 'Log in',
     signUp: 'Sign up',
+  },
+
+  ///////////////////////////////////
+  ///////////////////////////////////
+
+  toastNameSuccess: {
+    Title: 'Success',
+    Body: 'You have successfully edited your name',
+  },
+
+  toastNameError: {
+    Title: 'Error',
+    Body: 'You could not edit your name. Please check your details',
+  },
+
+  toastPhotoSuccess: {
+    Title: 'Success',
+    Body: 'You have successfully changed your photo',
+  },
+
+  toastPhotoError: {
+    Title: 'Error',
+    Body: 'You could not changed your photo. Please check your details',
   },
 
   ///////////////////////////////////

@@ -6,13 +6,7 @@ export default {
   },
   methods: {
     isLoadingToggle() {
-      setTimeout(() => {
-        this.isLoading = false
-      }, 1000)
+      this.isLoading = false
     },
-  },
-
-  mounted() {
-    this.isLoadingToggle()
   },
 }

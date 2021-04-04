@@ -1,6 +1,14 @@
+@media only screen and (max-width: 768px) {
+  .userprofile-container {
+    & .left-bar {
+      border-right: 1px solid rgba(51, 51, 102, 0.5) !important;
+    }
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .userprofile-container {
-    padding: 0 1rem !important;
+    padding: 3rem !important;
     .showcase {
       padding: 0 !important;
     }
@@ -13,7 +21,7 @@
       min-height: 7rem;
     }
     .top-header .content-h1 {
-      font-family: Open Sans;
+      font-family: 'Open Sans', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 26px;
@@ -21,7 +29,7 @@
       color: #333366;
     }
     .top-header .content-p {
-      font-family: Open Sans;
+      font-family: 'Open Sans', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -29,23 +37,37 @@
       color: #333366;
     }
     .text-h1 {
-      font-family: Open Sans;
+      font-family: 'Open Sans', sans-serif;
       font-style: normal;
       font-weight: bold;
-      font-size: 28.4097px;
+      font-size: 20px !important;
       line-height: 39px;
       color: #333366;
+    }
+    .content-h1 {
+      font-size: 20px !important;
+    }
+    .content-p {
+      margin: 0 1rem !important;
+      text-align: center !important;
     }
     .avatar-default {
       background: #333366;
     }
-
+    .list-group {
+      & a {
+        padding: 1rem !important;
+      }
+    }
+    .list-group-item {
+      padding: 1rem 0 !important;
+    }
     .data-form {
       width: 90% !important;
       margin: 5% auto;
       input {
         background: transparent;
-        font-family: Open Sans;
+        font-family: 'Open Sans', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 18px;
@@ -56,7 +78,7 @@
         background: #5d30db;
         border-radius: 4px;
         color: white;
-        font-family: Open Sans;
+        font-family: 'Open Sans', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;

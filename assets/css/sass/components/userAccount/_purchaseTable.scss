@@ -15,7 +15,13 @@
     line-height: 22px;
     color: #333366;
   }
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
   .purchase-history-column {
+    display: flex;
+    align-items: center;
     .context {
       font-family: Open Sans;
       font-style: normal;
@@ -52,6 +58,6 @@
   }
 
   tr.data-row {
-    height: 130px;
+    padding: 1rem;
   }
 }

@@ -21,6 +21,7 @@
             browse-text="Upload image"
             @change="valChange"
             size="md"
+            accept=".jpg, .jpeg, .png"
             placeholder="No file selected"
           ></b-form-file>
         </div>
@@ -36,13 +37,11 @@
 
 <script>
 export default {
+  props: ['mentorData'],
   data() {
     return {
       image: null,
     }
-  },
-  created() {
-    console.log(this.$auth.user.mentor)
   },
   methods: {
     valChange(event) {
@@ -56,7 +55,10 @@ export default {
   },
   computed: {
     avatar() {
-      return this.$auth.user.mentor.image
+      if (this.mentorData) {
+        return this.mentorData[0].image
+        // Will be changed later
+      }
     },
   },
 }

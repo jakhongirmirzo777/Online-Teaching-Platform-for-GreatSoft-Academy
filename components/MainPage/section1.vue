@@ -13,7 +13,7 @@
             </p>
           </div>
           <img
-            src="~assets/images/new.png"
+            src="~assets/images/background.png"
             alt="man"
             class="align-self-center man-image"
           />
@@ -34,7 +34,9 @@
           alt="...."
           class="w-20 h-20"
         />
-        <h1 class="mx-1 text-center logo-title mt-2 md:mt-0">{{ type.name }}</h1>
+        <h1 class="mx-1 text-center logo-title mt-2 md:mt-0">
+          {{ type.name }}
+        </h1>
       </div>
     </div>
   </div>
@@ -45,7 +47,7 @@ import form1 from '~/components/MainPage/form1'
 export default {
   name: 'section1',
   components: {
-    form1
+    form1,
   },
   data() {
     return {

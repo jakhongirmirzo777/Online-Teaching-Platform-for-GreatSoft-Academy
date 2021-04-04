@@ -1,0 +1,54 @@
+@media only screen and (max-width: 62.5em) {
+  .myLearningSingle {
+    &__list {
+      width: 35% !important;
+      min-width: 35% !important;
+    }
+    &__wrapper {
+      margin-right: 35% !important;
+    }
+    &__video {
+      height: 25rem !important;
+    }
+    &__description {
+      padding: 0 10% !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 48.1em) {
+  .myLearningSingle {
+    &__list {
+      &__show {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 48em) {
+  .myLearningSingle {
+    &__list {
+      &__show {
+        display: block !important;
+      }
+      &__hide {
+        display: none !important;
+      }
+    }
+    &__wrapper {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .myLearningSingle {
+    &__video {
+      height: 20rem !important;
+    }
+    &__description {
+      padding: 0 7% !important;
+    }
+  }
+}

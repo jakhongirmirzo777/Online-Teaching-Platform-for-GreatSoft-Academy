@@ -10,7 +10,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
       {
         rel: 'stylesheet',
         href:
@@ -35,8 +35,9 @@ export default {
   plugins: [
     { src: '~/plugins/yMap', mode: 'client' },
     { src: '~/plugins/aos', mode: 'client' },
+    '~/plugins/mask',
     '~/plugins/clickaway',
-    { src: '~/plugins/localStorage.js', ssr: false },
+    { src: '~/plugins/localStorage.js' },
   ],
 
   components: true,
@@ -92,10 +93,16 @@ export default {
       local: {
         endpoints: {
           login: { url: 'token/', method: 'post', propertyName: 'access' },
-          user: { url: 'user/profile', method: 'get', propertyName: false },
+          user: { url: 'user/profile/', method: 'get', propertyName: false },
           logout: false,
         },
       },
+    },
+    redirect: {
+      login: false,
+      logout: false,
+      callback: false,
+      home: false,
     },
   },
   build: {},

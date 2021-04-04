@@ -41,14 +41,11 @@
       <form @submit.prevent="userLogin">
         <Input
           type="text"
+          :mask="true"
           inputPlaceholder="Phone number"
-          v-model="userInfo.phone_number"
+          v-model="phone_number"
         />
-        <Input
-          type="password"
-          inputPlaceholder="Password"
-          v-model="userInfo.password"
-        />
+        <Input type="password" inputPlaceholder="Password" v-model="password" />
         <div class="form__button">
           <Button
             type="submit"
@@ -56,7 +53,12 @@
             btnStyle="controlButtonSubmit"
             >Sign in</Button
           >
-          <h4>Forgot your password?</h4>
+          <h4>
+            Forgot your password?
+            <nuxt-link :to="localePath('/auth/reset')"
+              >Click here to reset your password</nuxt-link
+            >
+          </h4>
           <div class="form__line">
             <span></span>
             or
@@ -86,33 +88,38 @@ export default {
   },
   data() {
     return {
-      userInfo: {
-        phone_number: '',
-        password: '',
-      },
+      password: '',
+      phone_number: '',
     }
   },
   methods: {
     async userLogin() {
-      try {
-        const resUser = await this.$auth.loginWith('local', {
-          data: this.userInfo,
+      await this.$auth
+        .loginWith('local', {
+          data: {
+            phone_number: this.phone_number.replace(/ /g, ''),
+            password: this.password,
+          },
         })
-        this.$store.dispatch('instructorsPage/initPhoneNumber', this.userInfo)
-        console.log('[LOGIN RES]', resUser)
-        this.showToast(
-          'success',
-          'Muvafaqiyatli',
-          'Akkountga kirish muvafaqiyatli yakunlandi'
-        )
-      } catch (err) {
-        console.log(err)
-        this.showToast(
-          'danger',
-          'Xatolik',
-          'Akkountga kirishda xatolik bor. Raqam yoki parol xato kiritilgan.'
-        )
-      }
+        .then((res) => {
+          this.$store.dispatch('instructorsPage/initPhoneNumber', {
+            phone_number: this.phone_number.replace(/ /g, ''),
+            password: this.password,
+          })
+          this.$router.push(this.localePath({ name: 'index' }))
+          this.showToast(
+            'success',
+            'Muvafaqiyatli',
+            'Akkountga kirish muvafaqiyatli yakunlandi'
+          )
+        })
+        .catch((err) => {
+          this.showToast(
+            'danger',
+            'Xatolik',
+            'Akkountga kirishda xatolik bor. Raqam yoki parol xato kiritilgan.'
+          )
+        })
     },
   },
 }

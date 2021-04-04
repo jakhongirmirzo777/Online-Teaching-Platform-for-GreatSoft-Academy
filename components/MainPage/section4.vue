@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid section-4">
+  <div :key="update" class="container-fluid section-4">
     <div class="row">
       <div class="col-md-4 col-sm-12 py-12">
         <h2 class="text-h2">
@@ -17,7 +17,7 @@
         </button>
       </div>
       <div class="col-md-8 col-sm-12 row m-0">
-        <div class="col-md-12 text-start text-white mt-5">
+        <div class="col-md-12 section-4-text text-start text-white mt-5">
           <p v-if="!quizPercentage">
             {{ $t('section4.Result1') }}<br />
             {{ $t('section4.SubResul1') }}
@@ -65,20 +65,30 @@ export default {
   data() {
     return {
       isActive: 0,
+      update: 1,
     }
   },
+
   computed: {
     quizPercentage() {
-      return localStorage.getItem('Percentage')
+      // if (typeof window !== 'undefined') {
+      //   return localStorage.getItem('Percentage')
+      // }
+      return this.$store.getters['quizModule/getPercentage']
     },
   },
+
   methods: {
+    // async quizInit() {
+    //   // console.log('ssssssd', localStorage.getItem('Percentage'))
+    //   this.quizPercentage = localStorage.getItem('Percentage')
+    // },
+
     changeRoute() {
       this.$router.push(this.localePath({ name: 'quiz' }))
     },
     determineLevel() {
       if (this.quizPercentage === null) {
-        console.log('quizPercentage is null', this.quizPercentage)
         return
       } else if (this.quizPercentage >= 0 && this.quizPercentage <= 20) {
         this.isActive = 1
@@ -94,7 +104,9 @@ export default {
     },
   },
   created() {
+    this.update++
     this.determineLevel()
+    // this.quizInit()
   },
 }
 </script>

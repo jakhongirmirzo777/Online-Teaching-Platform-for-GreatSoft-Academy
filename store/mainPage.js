@@ -12,7 +12,16 @@ export const mutations = {
   },
 }
 
-export const actions = {}
+export const actions = {
+  async initPromo({ commit }) {
+    try {
+      const { data } = await this.$axios.get(`main/`)
+      commit('setPromo', data)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+}
 
 export const getters = {
   getPromo(state) {

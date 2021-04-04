@@ -38,7 +38,9 @@ export default {
 
   methods: {
     callSingleCourseData() {
-      this.$store.dispatch('course/initSingleCourseData', this.$route.params.id)
+      this.$store
+        .dispatch('course/initSingleCourseData', this.$route.params.id)
+        .then((res) => this.isLoadingToggle())
     },
   },
 
@@ -80,29 +82,12 @@ export default {
 @media only screen and (max-width: 62em) {
   .courses {
     padding: 3rem 4rem;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(243, 248, 255, 1) 0,
-      rgba(243, 248, 255, 1) 78%,
-      rgba(255, 255, 255, 1) 22%
-    );
   }
 }
 
 @media only screen and (max-width: 41.5em) {
   .courses {
     padding: 2.5rem 1rem;
-  }
-}
-
-@media only screen and (max-width: 28.5em) {
-  .courses {
-    background-image: linear-gradient(
-      to bottom,
-      rgba(243, 248, 255, 1) 0,
-      rgba(243, 248, 255, 1) 74%,
-      rgba(255, 255, 255, 1) 36%
-    );
   }
 }
 </style>

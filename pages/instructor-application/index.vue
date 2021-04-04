@@ -9,6 +9,9 @@
 import Spinner from '~/utils/spinner.js'
 export default {
   mixins: [Spinner],
+  created() {
+    this.isLoadingToggle()
+  },
 }
 </script>
 

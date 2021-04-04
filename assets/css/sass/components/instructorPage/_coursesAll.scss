@@ -36,8 +36,8 @@
     & button {
       color: white;
       background-color: $dark_blue;
-      padding: 0.5rem 1rem;
-      font-size: 1.3rem;
+      padding: 0 0.5rem;
+      font-size: 1.1rem;
       font-weight: 600;
       border-radius: 10px;
       box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
@@ -62,7 +62,6 @@
     z-index: 999999;
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(0.5rem);
-    transition: all 0.2s ease-in;
   }
 
   &__form {
@@ -175,7 +174,7 @@
       padding: 1rem;
 
       & h2 {
-        font-size: 2.3rem;
+        font-size: 1.8rem;
         font-weight: 600;
         color: $dark_blue;
         margin-bottom: 0.6rem;
@@ -190,20 +189,18 @@
 
     &__link {
       text-decoration: none;
-      color: white;
+      color: $dark_blue;
       font-size: 1.4rem;
       font-weight: 600;
       padding: 0.3rem 1.5rem;
-      background-color: $dark_blue;
       border-radius: 5px;
       margin-bottom: 0.5rem;
-      box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
       transition: all 0.2s;
 
       &:hover {
+        color: $dark_blue;
         transform: translateY(-0.2rem);
         text-decoration: none;
-        color: white;
       }
 
       &:active {
@@ -212,15 +209,13 @@
     }
 
     &__delete {
-      color: white;
+      color: #a73535;
       font-size: 1.4rem;
       font-weight: 600;
       padding: 0.3rem 1.5rem;
-      background-color: #a73535;
       border-radius: 5px;
-      box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
       transition: all 0.2s;
-
+      cursor: pointer;
       &:hover {
         transform: translateY(-0.2rem);
       }

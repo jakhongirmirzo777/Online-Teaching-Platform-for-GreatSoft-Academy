@@ -6,9 +6,16 @@
 </template>
 
 <script>
+import SignIn from '~/components/Sign/SignIn'
 import Spinner from '~/utils/spinner.js'
 export default {
   mixins: [Spinner],
+  components: {
+    SignIn,
+  },
+  created() {
+    this.isLoadingToggle()
+  },
 }
 </script>
 

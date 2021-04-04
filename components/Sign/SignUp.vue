@@ -36,8 +36,9 @@
         <Input inputPlaceholder="Last Name" v-model="form.last_name" />
         <Input
           type="tel"
+          :mask="true"
           inputPlaceholder="Phone number"
-          v-model="form.phone_number"
+          v-model="phone_number"
         />
         <Input
           type="password"
@@ -52,9 +53,9 @@
           <Button type="submit" @click="getCode" btnStyle="controlButtonSubmit"
             >Continue</Button
           >
-          <check-code @codeTransfer="checkCode" />
         </div>
       </form>
+      <check-code @codeTransfer="checkCode" />
     </div>
   </div>
 </template>
@@ -72,21 +73,19 @@ export default {
       form: {
         first_name: '',
         last_name: '',
-        phone_number: '',
         password: '',
         token: '',
       },
+      phone_number: '',
       code: null,
     }
   },
-
-  created() {},
 
   methods: {
     async getCode() {
       await this.$axios
         .post('user/send/code/', {
-          phone_number: this.form.phone_number,
+          phone_number: this.phone_number.replace(/ /g, ''),
         })
         .then((res) => {
           console.log('[Sent code]', res.data.code)
@@ -95,14 +94,13 @@ export default {
           })
         })
         .catch((err) => {
-          console.log('[GET CODE ERROR]', err)
           this.showToast('danger', 'Xatolik', "Anketa to'gri to'ldirilmagan")
         })
     },
     async checkCode(payload) {
       await this.$axios
         .post('user/check/code/', {
-          phone_number: this.form.phone_number,
+          phone_number: this.phone_number.replace(/ /g, ''),
           code: payload,
         })
         .then((res) => {
@@ -115,21 +113,32 @@ export default {
 
       if (this.form.token != '' && this.form.token != null) {
         await this.$axios
-          .post('user/', this.form)
+          .post('user/', {
+            phone_number: this.phone_number.replace(/ /g, ''),
+            ...this.form,
+          })
           .then((res) => {
-            console.log('Final user/: ', res)
-            this.$auth.loginWith('local', { data: this.form })
-            this.$router.push('/')
+            this.$auth.loginWith('local', {
+              data: {
+                phone_number: this.phone_number.replace(/ /g, ''),
+                ...this.form,
+              },
+            })
+            this.$store.dispatch('instructorsPage/initPhoneNumber', {
+              phone_number: this.phone_number.replace(/ /g, ''),
+              password: this.form.password,
+            })
+            this.$router.push(this.localePath({ name: 'index' }))
             this.$store.dispatch('course/initToastShow', true)
           })
           .catch((err) => console.log('[USER ERROR]', err))
         this.form = {
           first_name: '',
           last_name: '',
-          phone_number: '',
           password: '',
           token: '',
         }
+        this.phone_number = ''
       }
       this.$nextTick(() => {
         this.$bvModal.hide('modal-check-code')

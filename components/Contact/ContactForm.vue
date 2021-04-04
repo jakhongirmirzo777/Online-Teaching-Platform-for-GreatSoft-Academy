@@ -18,9 +18,10 @@
           class="contact__form__input"
           id="tel"
           autocomplete="off"
-          placeholder="+9989--------"
+          v-mask="'+998 ## ### ## ##'"
+          placeholder="+998 -- --- -- --"
           required
-          v-model="form.phone_number"
+          v-model="phone_number"
         />
       </div>
       <div class="contact__input__group">
@@ -64,23 +65,28 @@ export default {
         full_name: '',
         email: '',
         message: '',
-        phone_number: '',
       },
+      phone_number: '',
     }
   },
   methods: {
     sendMessage() {
-      this.$store.dispatch('contactUs/sendMessage', this.form).then((res) => {
-        this.showToast(
-          'success',
-          'Muvafaqiyatli',
-          'Xabaringiz muvafaqiyatli yuborildi'
-        )
-        this.form.full_name = ''
-        this.form.email = ''
-        this.form.message = ''
-        this.form.phone_number = ''
-      })
+      this.$store
+        .dispatch('contactUs/sendMessage', {
+          phone_number: this.phone_number.replace(/ /g, ''),
+          ...this.form,
+        })
+        .then((res) => {
+          this.showToast(
+            'success',
+            'Muvafaqiyatli',
+            'Xabaringiz muvafaqiyatli yuborildi'
+          )
+          this.form.full_name = ''
+          this.form.email = ''
+          this.form.message = ''
+          this.phone_number = ''
+        })
     },
   },
 }

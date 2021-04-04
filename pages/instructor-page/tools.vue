@@ -6,14 +6,10 @@
         <div class="row">
           <div class="col-lg-3 p-0 tools__wrapper">
             <div class="tools__photo">
-              <img
-                :src="
-                  avatar ? avatar : require('~/assets/images/userAccount.png')
-                "
-                alt="user-image"
-                class="tools__img"
-              />
-              <h1 class="">Name Surname</h1>
+              <img :src="avatar" alt="user-image" class="tools__img" />
+              <h1 class="">
+                {{ mentorName }}
+              </h1>
             </div>
             <ul class="tools__list">
               <li
@@ -77,9 +73,30 @@ import Spinner from '~/utils/spinner.js'
 export default {
   middleware: [instructorToolsRedirect],
   mixins: [Spinner],
+  created() {
+    this.$store
+      .dispatch('instructorsTools/initMentorProfile')
+      .then((res) => this.isLoadingToggle())
+  },
   computed: {
+    mentorName() {
+      if (this.$store.getters['instructorsTools/getMentorProfile']) {
+        return this.$store.getters['instructorsTools/getMentorProfile'][0].user
+          .split(' ')
+          .slice(0, 2)
+          .join(' ')
+      }
+    },
     avatar() {
-      return this.$auth.user.mentor.image
+      if (this.$store.getters['instructorsTools/getMentorProfile']) {
+        const curImage = this.$store.getters[
+          'instructorsTools/getMentorProfile'
+        ][0]
+        return curImage.image
+          ? curImage.image
+          : require('~/assets/images/userAccount.png')
+        // Will be changed later
+      }
     },
   },
 }

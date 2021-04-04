@@ -1,6 +1,6 @@
 <template>
   <spinner v-if="isLoading" />
-  <div v-else class="container-fluid quiz-page">
+  <div :key="update" v-else class="container-fluid quiz-page">
     <div v-if="subjects.length === 0" class="row">
       <div class="col-md-6 offset-md-3">
         <h1 class="text-center my-4 heading">Subject set is empty</h1>
@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       subjects: null,
+      update: 1,
     }
   },
   methods: {
@@ -56,13 +57,16 @@ export default {
         .get('quiz/subject/')
         .then(({ data }) => {
           this.subjects = data
-          console.log('subjects', this.subjects)
+          this.update++
+          this.isLoadingToggle()
         })
         .catch((err) => console.log(err))
     },
   },
   async created() {
+    this.update++
     await this.fetchSubjects()
+    this.update++
   },
 }
 </script>

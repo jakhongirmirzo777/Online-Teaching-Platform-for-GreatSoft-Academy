@@ -45,6 +45,7 @@
 @import 'responsive/responsivePricing';
 @import 'responsive/responsivePurchaseHistoryPage';
 @import 'responsive/myLearning';
+@import 'responsive/responsiveUserAccount';
 @import 'responsive/myCart';
 @import 'responsive/notification';
 @import 'responsive/userProfile';
@@ -59,12 +60,12 @@
 @import 'components/homePage/section-7';
 @import 'components/homePage/app-footer';
 @import 'components/homePage/navbar-bottom';
-@import 'components/appNavbar';
-@import 'layouts/transition';
+@import 'components/homePage/appNavbar';
+
+@import 'components/userAccount/myLearningSingle';
 @import 'components/userAccount/purchaseTable';
 @import 'components/userAccount/notification';
 
 @import 'components/userProfile/profile';
 @import 'responsive/section-4';
-@import 'layouts/payment';
 

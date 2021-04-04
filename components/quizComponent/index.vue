@@ -1,7 +1,7 @@
 <template>
   <spinner v-if="isLoading" />
   <div v-else class="container-fluid">
-    <div class="row">
+    <div :key="update" class="row">
       <div
         class="col-md-6 offset-md-3 wrapper"
         v-for="(question, index) in myQuestions"
@@ -73,6 +73,7 @@ export default {
   props: ['questions'],
   data() {
     return {
+      update: 1,
       isFinished: false,
       isLoading: true,
       answer: Array(this.myQuestions && this.myQuestions.length).fill(false),
@@ -172,10 +173,13 @@ export default {
       await this.$axios
         .get(`quiz/quiz/${o.id}`)
         .then(({ data }) => {
+          this.update++
           this.myQuestions.push(data)
+          this.update++
         })
         .catch((err) => console.log(err))
     })
+    this.update++
     this.isLoading = false
   },
 }

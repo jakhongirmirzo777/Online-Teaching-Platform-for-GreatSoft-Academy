@@ -44,10 +44,27 @@
 }
 @media only screen and (max-width: 1495px) {
   .section-4 {
+    .activeImage {
+      bottom: 38% !important;
+      right: -13% !important;
+      width: 7rem !important;
+      height: 7rem !important;
+    }
     .progress-google {
       position: relative;
       &::before {
         transform: rotate(-25deg);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .section-4 {
+    .progress-google {
+      position: relative;
+      &::before {
+        transform: rotate(-26deg);
       }
     }
   }
@@ -63,13 +80,21 @@
     }
   }
 }
-@media only screen and (max-width: 1100px) {
+
+@media only screen and (max-width: 1024px) {
   .section-4 {
     .progress-google {
-      position: relative;
       &::before {
-        transform: rotate(-26deg);
+        transform: rotate(-38deg) !important;
+        top: 22% !important;
+        width: 98%;
       }
+    }
+    .activeImage {
+      bottom: 23% !important;
+      right: -16% !important;
+      width: 4.7rem !important;
+      height: 4.7rem !important;
     }
   }
 }
@@ -86,17 +111,6 @@
   }
 }
 
-@media only screen and (max-width: 875px) {
-  .section-4 {
-    .progress-google {
-      position: relative;
-      &::before {
-        transform: rotate(-31deg);
-        top: 20%;
-      }
-    }
-  }
-}
 @media only screen and (max-width: 950px) {
   .section-4 {
     .progress-google {
@@ -110,8 +124,47 @@
   }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 875px) {
   .section-4 {
+    .progress-google {
+      position: relative;
+      &::before {
+        transform: rotate(-31deg);
+        top: 20%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .section-4 {
+    .progress-google {
+      &::before {
+        transform: rotate(-39deg) !important;
+        top: 22% !important;
+        width: 97%;
+      }
+    }
+    .activeImage {
+      bottom: 22.5% !important;
+      right: -16% !important;
+      width: 4.5rem !important;
+      height: 4.5rem !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .section-4-text {
+    margin: 0rem 0 8rem !important;
+  }
+  .section-4 {
+    .activeImage {
+      right: -15% !important;
+      bottom: 43% !important;
+      width: 4.5rem !important;
+      height: 4.5rem !important;
+    }
     .google-image-wrap {
       width: 50px;
       height: 50px;
@@ -120,12 +173,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-      }
-      .activeImage {
-        right: -15%;
-        bottom: 35%;
-        width: 4rem;
-        height: 4rem;
       }
     }
     .progress-google {
@@ -231,8 +278,31 @@
   }
 }
 
+@media only screen and (max-width: 540px) {
+  .section-4 {
+    .progress-google {
+      &::before {
+        transform: rotate(-22deg) !important;
+        top: 4% !important;
+      }
+    }
+    .activeImage {
+      bottom: 43% !important;
+      right: -10% !important;
+      width: 4.2rem !important;
+      height: 4.2rem !important;
+    }
+  }
+}
+
 @media only screen and (max-width: 420px) {
   .section-4 {
+    .activeImage {
+      right: -12% !important;
+      bottom: 34% !important;
+      width: 3.6rem !important;
+      height: 3.6rem !important;
+    }
     .google-image-wrap {
       width: 50px;
       height: 50px;
@@ -241,12 +311,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-      }
-      .activeImage {
-        right: -15%;
-        bottom: 35% !important;
-        width: 4rem;
-        height: 4rem;
       }
     }
     .progress-google {
@@ -352,6 +416,12 @@
 
 @media only screen and (max-width: 380px) {
   .section-4 {
+    .activeImage {
+      right: -16% !important;
+      bottom: 30% !important;
+      width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
     .google-image-wrap {
       width: 50px;
       height: 50px;
@@ -360,12 +430,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-      }
-      .activeImage {
-        right: -16% !important;
-        bottom: 32% !important;
-        width: 3.5rem;
-        height: 3.5rem;
       }
     }
     .progress-google {
@@ -465,6 +529,23 @@
           left: 27%;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .section-4 {
+    .progress-google {
+      &::before {
+        transform: rotate(-35deg) !important;
+        top: 2% !important;
+      }
+    }
+    .activeImage {
+      bottom: 25.5% !important;
+      right: -15% !important;
+      width: 2.8rem !important;
+      height: 2.8rem !important;
     }
   }
 }

@@ -11,7 +11,9 @@
     <div class="row" v-else>
       <div
         class="col-md-4"
-        v-for="course in courses.slice(0, 6)"
+        v-for="course in courses
+          .filter((item) => item.is_checked === true)
+          .slice(0, 6)"
         :key="course.id"
       >
         <div class="cart grid hover:shadow-lg">
@@ -25,7 +27,11 @@
           </h2>
 
           <p class="text-paragraph text-justify">
-            {{ course.description }}
+            {{
+              course.description
+                ? course.description.split(' ').slice(0, 20).join(' ') + '....'
+                : ''
+            }}
           </p>
         </div>
       </div>
@@ -56,5 +62,6 @@ export default {
       this.$router.push(this.localePath({ name: 'courses' }))
     },
   },
+  computed: {},
 }
 </script>

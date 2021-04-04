@@ -11,37 +11,27 @@
         <img src="~assets/images/greatsoft.png" alt="greatsoft" />
       </div>
       <div class="col-md-11 col-sm-11 col-xs-11">
-        <vueperslides :mentors="mentorDetails" />
+        <h1 v-if="!mentorDetails" class="text-gray-400">
+          There is no instructors yet
+        </h1>
+        <vueperslides v-else :mentors="mentorDetails" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import vueperslides from '~/components/MainPage/vueperslides'
 export default {
   components: {
     vueperslides,
   },
-  data() {
-    return {}
-  },
   computed: {
-    ...mapGetters({
-      mentors: 'mentorModule/getMentors',
-    }),
     mentorDetails() {
-      const api = 'https://greatsoft-academy.herokuapp.com'
-      const mentorDetail = this.mentors.map((mentor) => ({
-        ...mentor,
-        mentorImg: api + mentor.image,
-      }))
-      return mentorDetail
+      if (this.$store.getters['mentorModule/getMentors']) {
+        return this.$store.getters['mentorModule/getMentors']
+      }
     },
-  },
-  async created() {
-    await this.$store.dispatch('mentorModule/getMentors')
   },
 }
 </script>

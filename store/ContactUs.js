@@ -4,7 +4,7 @@ export const mutations = {}
 export const actions = {
   async sendMessage({ commit }, payload) {
     try {
-      return await this.$axios.post('contact/', payload)
+      return this.$axios.post('contact/', payload)
     } catch (err) {
       console.log(err)
     }

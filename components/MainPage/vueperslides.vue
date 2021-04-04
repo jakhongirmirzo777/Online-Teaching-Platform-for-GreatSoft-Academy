@@ -11,11 +11,13 @@
     <vueper-slide class="cart-self" v-for="mentor in mentors" :key="mentor.id">
       <template v-slot:content>
         <div class="cart-block">
-          <img class="cart-image" :src="mentor.mentorImg" alt="..." />
+          <img class="cart-image" :src="mentor.image" alt="..." />
           <div class="w-full flex justify-between items-center">
-            <p class="user-name">
-              {{ mentor.user.split(' ').slice(0, 2).join(' ') }}
-            </p>
+            <div class="w-full text-center">
+              <p class="user-name">
+                {{ mentor.user.split(' ').slice(0, 2).join(' ') }}
+              </p>
+            </div>
           </div>
           <div class="w-full flex justify-between items-center my-2">
             <div class="flex flex-wrap user-profession pb-1">
@@ -106,7 +108,9 @@ export default {
   position: absolute;
   box-sizing: border-box;
   border-radius: 50%;
-  transform: translateY(-105%);
+  height: 90px;
+  width: 90px;
+  transform: translate(15%, -105%);
 }
 .user-name {
   font-family: Open Sans;

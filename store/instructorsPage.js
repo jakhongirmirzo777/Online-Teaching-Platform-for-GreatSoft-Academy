@@ -1,6 +1,5 @@
 export const state = () => ({
   allCoursesList: [],
-  singleCourse: null,
   mentorData: {
     phone_number: '',
     password: '',
@@ -12,9 +11,7 @@ export const mutations = {
   setAllCoursesList(state, data) {
     state.allCoursesList = data
   },
-  setSingleCourse(state, data) {
-    state.singleCourse = data
-  },
+
   setMentorProfile(state, data) {
     state.mentorProfile = data
   },
@@ -67,17 +64,6 @@ export const actions = {
     }
   },
 
-  async initSingleCourse({ commit }, payload) {
-    try {
-      const { data } = await this.$axios.get(`course/${payload}/`, {
-        headers: { 'Accept-Language': this.$i18n.locale },
-      })
-      commit('setSingleCourse', data)
-    } catch (err) {
-      console.log(err)
-    }
-  },
-
   async createCourse({ state, dispatch }, payload) {
     try {
       const resAccess = await this.$axios.post('token/', state.mentorData)
@@ -92,7 +78,7 @@ export const actions = {
     }
   },
 
-  async addMentorCourse({ state, commit }, payload) {
+  async addMentorCourse({ state, dispatch, commit }, payload) {
     try {
       const resAccess = await this.$axios.post('token/', state.mentorData)
       if (resAccess.data.access) {
@@ -116,15 +102,7 @@ export const actions = {
               headers: { Authorization: `Bearer ${resAccess.data.access}` },
             }
           )
-
-          this.$router.go()
-          ///////////////////
-          ///////////////////
-          const resProfile = await this.$axios.get('user/profile/', {
-            headers: { Authorization: `Bearer ${resAccess.data.access}` },
-          })
-
-          commit('setMentorProfile', resProfile.data)
+          dispatch('initAllCoursesList')
           ///////////////////
           ///////////////////
         } else {
@@ -137,17 +115,10 @@ export const actions = {
               headers: { Authorization: `Bearer ${resAccess.data.access}` },
             }
           )
-
-          this.$router.go()
-          ///////////////////
-          ///////////////////
-          const resProfile = await this.$axios.get('user/profile/', {
-            headers: { Authorization: `Bearer ${resAccess.data.access}` },
-          })
-
-          commit('setMentorProfile', resProfile.data)
+          dispatch('initAllCoursesList')
         }
       }
+      return Promise.resolve('Success')
     } catch (err) {
       console.log(err)
     }
@@ -156,33 +127,39 @@ export const actions = {
   async initDeleteCourse({ dispatch }, id) {
     try {
       const { data } = await this.$axios.delete(`course/${id}/`)
-      dispatch('deleteMentorCourse', id)
-      this.$router.go()
+      dispatch('deleteMentorCourse', id).then((res) =>
+        dispatch('initAllCoursesList')
+      )
+      return Promise.resolve('Success')
     } catch (err) {
       console.log(err)
     }
   },
 
   async deleteMentorCourse({ state }, id) {
-    const resAccess = await this.$axios.post('token/', state.mentorData)
-    if (resAccess.data.access) {
-      const resAvailabeleCourse = await this.$axios.get('user/profile/', {
-        headers: { Authorization: `Bearer ${resAccess.data.access}` },
-      })
-      const newCourseList = resAvailabeleCourse.data.mentor.created_course.replace(
-        id.toString(),
-        ''
-      )
-      const { data } = await this.$axios.patch(
-        'mentor/profile/',
-        {
-          created_course: newCourseList,
-        },
-        {
+    try {
+      const resAccess = await this.$axios.post('token/', state.mentorData)
+      if (resAccess.data.access) {
+        const resAvailabeleCourse = await this.$axios.get('user/profile/', {
           headers: { Authorization: `Bearer ${resAccess.data.access}` },
-        }
-      )
-    }
+        })
+        const newCourseList = resAvailabeleCourse.data.mentor.created_course
+          .replace(id.toString(), 'del')
+          .split(' ')
+          .filter((item) => item != 'del')
+          .join(' ')
+        const { data } = await this.$axios.patch(
+          'mentor/profile/',
+          {
+            created_course: newCourseList,
+          },
+          {
+            headers: { Authorization: `Bearer ${resAccess.data.access}` },
+          }
+        )
+      }
+      return Promise.resolve('Success')
+    } catch (err) {}
   },
 
   clearPhoneNumber({ commit }) {
@@ -213,8 +190,5 @@ export const getters = {
         return null
       }
     }
-  },
-  getSingleCourse(state) {
-    return state.singleCourse
   },
 }

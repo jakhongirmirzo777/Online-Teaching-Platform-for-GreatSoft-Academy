@@ -1,11 +1,20 @@
 <template>
   <div class="introduction__container">
     <div class="container">
-      <h3 class="introduction__h3">Web Development > Frontend > Vue.js</h3>
+      <!-- <h3 class="introduction__h3">Web Development > Frontend > Vue.js</h3> -->
       <div class="row d-lg-none d-md-block">
         <div class="col-lg-12">
           <div class="introduction__responsive__promo">
-            <VideoPlayer :videoData2="promoVideo" />
+            <div class="video-js__container">
+              <video
+                class="video-js my-video"
+                data-setup="{}"
+                controls
+                :poster="courseData.promo_image"
+                style="height: 350px; border: none"
+                :src="courseData.promo_video"
+              ></video>
+            </div>
           </div>
         </div>
       </div>
@@ -20,7 +29,7 @@
             </p>
             <p>
               Created by
-              {{ courseInstructor.name }}
+              {{ instructorName }}
             </p>
           </div>
         </div>
@@ -35,7 +44,7 @@
             {{ info.text }}
           </div>
         </div>
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
           <div class="introduction__button">
             <nuxt-link to="/" class="introduction__link introduction__link1">
               <i class="fas fa-play introduction__iconss" /> Start learning
@@ -50,16 +59,14 @@
               with</nuxt-link
             >
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import VideoPlayer from '~/components/MainPage/VideoPlayer'
 export default {
-  components: { VideoPlayer },
   props: {
     courseData: {
       type: [Array, Object],
@@ -67,17 +74,6 @@ export default {
 
     courseInstructor: {
       type: [Array, Object],
-    },
-  },
-
-  computed: {
-    promoVideo() {
-      if (this.courseData.promo_video) {
-        return {
-          video: this.courseData.promo_video,
-          image: this.courseData.promo_image,
-        }
-      }
     },
   },
 
@@ -95,11 +91,25 @@ export default {
       ],
     }
   },
-
-  created() {},
-
-  methods: {},
+  computed: {
+    instructorName() {
+      if (this.courseInstructor.user) {
+        return this.courseInstructor.user.split(' ').slice(0, 2).join(' ')
+      }
+    },
+  },
 }
 </script>
 
-<style></style>
+<style scoped>
+.my-video {
+  position: relative !important;
+}
+.my-video:focus {
+  outline: none;
+}
+
+.video-js__container {
+  height: 100% !important;
+}
+</style>

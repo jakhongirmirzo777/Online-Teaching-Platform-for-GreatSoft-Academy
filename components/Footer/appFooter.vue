@@ -1,7 +1,7 @@
 <template>
   <div class="app-footer">
     <div
-      class="up-row"
+      class="up-row mb-5"
       style="display: flex; justify-content: space-between; flex-flow: row wrap"
     >
       <div class="item" style="flex: 1; margin: 1rem auto 2rem auto">
@@ -66,14 +66,14 @@
           <li>Machine learning with python</li>
         </ul>
       </div>
-      <div class="item" style="flex: 1">
+      <!-- <div class="item" style="flex: 1">
         <h1 class="text-h1">Plans & pricing</h1>
         <ul>
           <li>Basic</li>
           <li>Pro</li>
           <li>Premium</li>
         </ul>
-      </div>
+      </div> -->
       <div class="item" style="flex: 1">
         <h1 class="text-h1">Careers</h1>
         <ul>
@@ -83,7 +83,7 @@
       </div>
     </div>
     <hr />
-    <div class="bottom-row">
+    <div class="bottom-row pt-4">
       <p class="my-1">2020 GreatSoft Academy |</p>
       <p class="my-1">All rights reserved</p>
       <p class="my-1">Terms of use and pravicy policy</p>

@@ -9,9 +9,8 @@
         <div class="landPage__group d-flex align-items-center" role="group">
           <b-form-input
             class="landPage__input"
-            placeholder="First Name"
+            :placeholder="getName ? getName.fName : ''"
             v-model="firstName"
-            required
             :disabled="!fName"
             trim
           ></b-form-input>
@@ -23,9 +22,8 @@
         <div class="landPage__group d-flex align-items-center" role="group">
           <b-form-input
             class="landPage__input"
-            placeholder="Last name"
+            :placeholder="getName ? getName.lName : ''"
             v-model="lastName"
-            required
             :disabled="!lName"
             trim
           ></b-form-input>
@@ -35,7 +33,11 @@
           />
         </div>
         <div class="landPage__group landPage__btn" role="group">
-          <b-button type="submit" size="md" variant="primary"
+          <b-button
+            style="margin-right: 3rem"
+            type="submit"
+            size="md"
+            variant="primary"
             >Change data</b-button
           >
         </div>
@@ -46,6 +48,7 @@
 
 <script>
 export default {
+  props: ['mentorData'],
   data() {
     return {
       firstName: '',
@@ -54,23 +57,64 @@ export default {
       lName: false,
     }
   },
-  created() {
-    this.name()
+
+  computed: {
+    getName() {
+      if (this.mentorData) {
+        const data = this.mentorData[0].user
+        return {
+          fName: !this.fName
+            ? data.split(' ').slice(0, 1).join(' ')
+            : 'Enter your first name',
+          lName: !this.lName
+            ? data.split(' ').slice(1, 2).join(' ')
+            : 'Enter your last name',
+        }
+      }
+    },
   },
+
   methods: {
     enableFName() {
-      this.fName = true
+      this.fName = !this.fName
     },
     enableLName() {
-      this.lName = true
-    },
-    name() {
-      this.firstName = this.$auth.user.mentor.user.split(' ')[0]
-      this.lastName = this.$auth.user.mentor.user.split(' ')[1]
+      this.lName = !this.lName
     },
     changeName() {
-      const mentorFullName = this.firstName + ' ' + this.lastName
-      this.$store.dispatch('instructorsTools/changeMentorName', mentorFullName)
+      if (this.mentorData) {
+        const data = this.mentorData[0].user
+        const phoneNumber = data.split(' ').slice(2).join(' ')
+        if (this.firstName == '') {
+          const newFirstName = data.split(' ').slice(0, 1).join(' ')
+          const mentorFullName = `${newFirstName} ${this.lastName} ${phoneNumber}`
+          this.$store.dispatch(
+            'instructorsTools/changeMentorName',
+            mentorFullName
+          )
+          this.lastName = ''
+          this.lName = false
+        } else if (this.lastName == '') {
+          const newLastName = data.split(' ').slice(1, 2).join(' ')
+          const mentorFullName = `${this.firstName} ${newLastName} ${phoneNumber}`
+          this.$store.dispatch(
+            'instructorsTools/changeMentorName',
+            mentorFullName
+          )
+          this.firstName = ''
+          this.fName = false
+        } else if (this.lastName != '' && this.firstName != '') {
+          const mentorFullName = `${this.firstName} ${this.lastName} ${phoneNumber}`
+          this.$store.dispatch(
+            'instructorsTools/changeMentorName',
+            mentorFullName
+          )
+          this.firstName = ''
+          this.lastName = ''
+          this.fName = false
+          this.lName = false
+        }
+      }
     },
   },
 }

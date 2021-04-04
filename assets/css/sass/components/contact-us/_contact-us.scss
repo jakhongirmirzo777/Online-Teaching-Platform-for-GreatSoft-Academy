@@ -1,7 +1,9 @@
 .contact {
   padding: 5rem 9rem;
   background-image: url('~assets/images/contact/bitmap.png');
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   &__us {
     & h1 {
       color: $dark_blue;

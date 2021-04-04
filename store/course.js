@@ -43,7 +43,7 @@ export const actions = {
         headers: { 'Accept-Language': this.$i18n.locale },
       })
       commit('setCourseData', data)
-      dispatch('initIntructorName', data.instructor)
+      dispatch('initIntructorName', data.mentors[0])
     } catch (err) {
       console.log(err)
     }
@@ -51,9 +51,12 @@ export const actions = {
 
   async initIntructorName({ commit }, payload) {
     try {
-      const { data } = await this.$axios.get(`course/instructor/${payload}/`, {
-        headers: { 'Accept-Language': this.$i18n.locale },
-      })
+      const { data } = await this.$axios.get(
+        `/mentor/list-search/${payload}/`,
+        {
+          headers: { 'Accept-Language': this.$i18n.locale },
+        }
+      )
       commit('setInstructorName', data)
     } catch (err) {
       console.log(err)

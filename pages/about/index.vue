@@ -23,6 +23,9 @@ export default {
     Instructors,
   },
   mixins: [Spinner],
+  created() {
+    this.isLoadingToggle()
+  },
 }
 </script>
 

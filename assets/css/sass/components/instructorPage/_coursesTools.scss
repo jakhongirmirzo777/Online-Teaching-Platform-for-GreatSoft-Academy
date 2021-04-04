@@ -14,8 +14,7 @@
       padding: 0;
     }
     &__photo {
-      height: 15rem;
-      padding: 5rem 0 1rem;
+      margin: 2rem 0 1rem;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -23,13 +22,17 @@
 
       & h1 {
         margin-top: 1rem;
+        word-break: break-word;
+        padding: 0 1rem;
+        text-align: center;
         font-weight: bold;
         font-size: 28.4097px;
         color: #333366;
       }
     }
     &__img {
-      height: 100%;
+      height: 10rem;
+      border-radius: 5px;
     }
     &__list {
       margin-top: 2rem;
@@ -117,6 +120,7 @@
     }
     &__img {
       height: 100%;
+      border-radius: 5px;
     }
   }
 

@@ -32,6 +32,9 @@ import CourseRevenue from '~/components/Instructor-page/Performance/CourseRevenu
 export default {
   components: { CourseEnrollments, CourseRating, CourseRevenue },
   mixins: [Spinner],
+  created() {
+    this.isLoadingToggle()
+  },
 }
 </script>
 

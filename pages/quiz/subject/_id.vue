@@ -1,6 +1,6 @@
 <template>
   <spinner v-if="isLoading" />
-  <div v-else class="subject-wrapper pt-8">
+  <div :key="update" v-else class="subject-wrapper pt-8">
     <h1 class="text-center subject-heading">
       Quiz subject: <span class="subject-title"> {{ subject }}</span>
     </h1>
@@ -20,22 +20,30 @@ export default {
       subject: null,
       allQuestions: [],
       filteredQuestions: [],
+      update: 1,
     }
   },
   async created() {
+    this.update++
     await this.$axios
       .get(`quiz/subject/${this.$route.params.id}`)
-      .then(({ data }) => (this.subject = data.direction))
+      .then(({ data }) => {
+        this.update++
+        return (this.subject = data.direction)
+      })
       .catch((err) => console.log(err))
     await this.$axios
       .get(`quiz/quiz/`)
       .then(({ data }) => {
         this.allQuestions = data
+        this.update++
+        this.isLoadingToggle()
       })
       .catch((err) => console.log(err))
     this.filteredQuestions = this.allQuestions.filter(
       (o) => o.subject === parseInt(`${this.$route.params.id}`)
     )
+    this.update++
   },
 }
 </script>

@@ -23,8 +23,12 @@ import section6 from '~/components/MainPage/section6'
 import section7 from '~/components/MainPage/section7'
 import spinner from '~/components/spinner.vue'
 import Toast from '~/utils/toast.js'
-import Spinner from '~/utils/spinner.js'
 export default {
+  data() {
+    return {
+      isLoading: true,
+    }
+  },
   components: {
     spinner,
     section1,
@@ -36,7 +40,7 @@ export default {
     section7,
   },
   layout: 'HomePageLayout',
-  mixins: [Toast, Spinner],
+  mixins: [Toast],
   computed: {
     allCourses() {
       if (this.$store.getters['course/getAllCourseData']) {
@@ -44,10 +48,9 @@ export default {
       }
     },
   },
-
-  async created() {
-    // await this.$store.dispatch('userModule/GET_USER')
-    await this.createToast()
+  created() {
+    this.isLoading = false
+    this.createToast()
   },
   methods: {
     createToast() {

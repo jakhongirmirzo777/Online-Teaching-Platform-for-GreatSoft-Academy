@@ -17,8 +17,12 @@
 
   & .video-container {
     position: relative;
-    @media only screen and (max-width: 1050px) {
+    @media only screen and (max-width: 1076px) {
       margin-bottom: 5rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+      margin-bottom: 2rem;
     }
     &::before {
       content: '';
@@ -30,7 +34,7 @@
       bottom: 2.5rem;
       right: -1rem;
       z-index: 5;
-      @media only screen and (max-width: 1050px) {
+      @media only screen and (max-width: 1076px) {
         bottom: -2rem !important;
       }
       @media only screen and (max-width: 600px) {
@@ -54,6 +58,9 @@
       z-index: 10;
       background-size: contain;
       background-repeat: no-repeat;
+      @media only screen and (max-width: 1076px) {
+        top: -2rem !important;
+      }
       @media only screen and (max-width: 600px) {
         display: none;
       }
@@ -68,7 +75,9 @@
       border-radius: 69.3682px 6.93682px 6.93682px 0px;
       top: 2.6rem;
       left: -1.3rem;
-
+      @media only screen and (max-width: 1076px) {
+        top: -2rem !important;
+      }
       @media only screen and (max-width: 600px) {
         display: none;
       }
@@ -97,6 +106,12 @@
     font-size: 27.7895px;
     line-height: 38px;
     color: #ff9900;
+    @media only screen and (max-width: 1076px) {
+      margin-bottom: 5rem !important;
+    }
+    @media only screen and (max-width: 600px) {
+      margin-bottom: 2rem !important;
+    }
   }
   .text-h1-span {
     font-size: 29.7895px;
@@ -104,7 +119,7 @@
     color: #333366;
   }
 }
-@media only screen and (max-width: 1055px) {
+@media only screen and (max-width: 1076px) {
   .section-2-wrapper {
     .row-wrapper {
       display: flex;

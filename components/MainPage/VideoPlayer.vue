@@ -13,14 +13,6 @@
 
 <script>
 export default {
-  props: {
-    videoData: {
-      type: Object,
-    },
-    videoData2: {
-      type: Object,
-    },
-  },
   data() {
     return {
       postImage: '',
@@ -39,16 +31,8 @@ export default {
 
   methods: {
     changeVideo() {
-      if (this.videoData) {
-        this.postImage = this.videoData.image
-        this.videoSrc = this.videoData.video
-      } else if (this.videoData2) {
-        this.postImage = this.videoData2.image
-        this.videoSrc = this.videoData2.video
-      } else {
-        this.postImage = this.getPromo.image
-        this.videoSrc = this.getPromo.video
-      }
+      this.postImage = this.getPromo.image
+      this.videoSrc = this.getPromo.video
     },
   },
 }

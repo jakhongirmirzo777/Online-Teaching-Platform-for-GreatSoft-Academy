@@ -61,3 +61,19 @@ export function pricingPage({ route, redirect }) {
     return redirect('/uz')
   }
 }
+
+export function userProfile({ route, redirect }) {
+  if (route.fullPath === '/userprofile' || route.fullPath === '/userprofile/') {
+    return redirect('/userprofile/profile')
+  } else if (
+    route.fullPath === '/ru/userprofile' ||
+    route.fullPath === '/ru/userprofile/'
+  ) {
+    return redirect('/ru/userprofile/profile')
+  } else if (
+    route.fullPath === '/uz/userprofile' ||
+    route.fullPath === '/uz/userprofile/'
+  ) {
+    return redirect('/uz/userprofile/profile')
+  }
+}

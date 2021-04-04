@@ -19,6 +19,9 @@ export default {
     InsructorContent,
     InstructorProcess,
   },
+  created() {
+    this.isLoadingToggle()
+  },
 }
 </script>
 

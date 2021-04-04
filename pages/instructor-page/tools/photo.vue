@@ -1,6 +1,6 @@
 <template>
   <div class="courses__photo">
-    <CoursesPhoto />
+    <CoursesPhoto :mentorData="mentorProfile" />
   </div>
 </template>
 
@@ -9,6 +9,13 @@ import CoursesPhoto from '~/components/Instructor-page/Tools/CoursesPhoto'
 export default {
   components: {
     CoursesPhoto,
+  },
+  computed: {
+    mentorProfile() {
+      if (this.$store.getters['instructorsTools/getMentorProfile']) {
+        return this.$store.getters['instructorsTools/getMentorProfile']
+      }
+    },
   },
 }
 </script>

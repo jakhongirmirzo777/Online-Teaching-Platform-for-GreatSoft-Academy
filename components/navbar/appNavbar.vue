@@ -65,21 +65,24 @@
           <!-- <b-dropdown-item :to="localePath('/inProcess')"
             >Become a mentor
           </b-dropdown-item> -->
-          <b-dropdown-item :to="localePath('/instructors')"
-            >Become an instructor</b-dropdown-item
+          <b-dropdown-item :to="localePath('/instructors')">{{
+            $t('navbar.InstructorMain')
+          }}</b-dropdown-item>
+          <b-dropdown-item :to="localePath(`/partner-application`)">
+            {{ $t('navbar.Partner') }}</b-dropdown-item
           >
         </b-nav-item-dropdown>
-        <b-nav-item :to="localePath(`/partner-application`)">
+        <!-- <b-nav-item :to="localePath(`/partner-application`)">
           {{ $t('navbar.Partner') }}
-        </b-nav-item>
+        </b-nav-item> -->
         <b-nav-item :to="localePath('/contact-us')">
           {{ $t('navbar.ContactUs') }}</b-nav-item
         >
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto" v-if="$auth.loggedIn">
-        <language-switcher class="mt-1" />
-        <b-nav-item :to="localePath('/')"
+        <language-switcher class="mt-1 mr-3" />
+        <!-- <b-nav-item :to="localePath('/')"
           ><img
             class="w-7 h-7"
             src="~assets/svgs/search.svg"
@@ -87,13 +90,35 @@
         /></b-nav-item>
         <b-nav-item :to="localePath('/')"
           ><img class="w-7 h-7" src="~assets/svgs/korzinka.svg" alt="korzinka"
-        /></b-nav-item>
-        <b-nav-item :to="localePath('/')"
+        /></b-nav-item> -->
+        <b-nav-item
+          v-if="$auth.user.user"
+          class="mr-3"
+          style="position: relative"
+          :to="localePath('/userAccount/mynotifications')"
           ><img
+            style="position: relative; z-index: 10"
             class="w-7 h-7"
             src="~assets/svgs/notification.svg"
             alt="korzinka"
-        /></b-nav-item>
+          />
+          <span
+            style="
+              font-size: 0.9rem;
+              color: #fff;
+              top: 0;
+              right: -0.35rem;
+              z-index: 5;
+              padding: 0 0.5rem;
+              border-radius: 50%;
+              background-color: #ff9900;
+              position: absolute;
+            "
+            v-if="badge"
+          >
+            {{ badge }}
+          </span>
+        </b-nav-item>
         <b-dropdown
           size="md"
           variant="none"
@@ -102,21 +127,13 @@
           right
         >
           <template #button-content>
-            <img
-              src="~assets/images/user_profile.png"
-              class="w-10 h-10"
-              alt="user-profile"
-            />
+            <b-avatar style="background-color: #333366" />
           </template>
           <b-dropdown-header id="dropdown-header-label">
             <div class="flex flex-row">
-              <img
-                src="~assets/images/user_profile.png"
-                class="w-10 h-10"
-                alt="facebook"
-              />
+              <b-avatar style="background-color: #333366" />
               <p class="user-fullname-text ml-3">
-                <span>
+                <span class="user__span">
                   {{
                     $auth.user.user
                       ? $auth.user.user.first_name
@@ -124,6 +141,7 @@
                       ? mentorFullName.fName
                       : null
                   }}
+                  <br />
                   {{
                     $auth.user.user
                       ? $auth.user.user.last_name
@@ -147,20 +165,20 @@
           </b-dropdown-header>
           <b-dropdown-divider></b-dropdown-divider>
           <div v-if="$auth.user.user">
-            <b-dropdown-item :to="localePath('/useraccount/mylearning')"
+            <b-dropdown-item :to="localePath('/userAccount/mylearning')"
               >My Learning
             </b-dropdown-item>
-            <b-dropdown-item :to="localePath('/useraccount/mycart')"
+            <b-dropdown-item :to="localePath('/userAccount/mycart')"
               >My Cart</b-dropdown-item
             >
-            <b-dropdown-item :to="localePath('/useraccount/mynotifications')"
+            <b-dropdown-item :to="localePath('/userAccount/mynotifications')"
               >Notifications</b-dropdown-item
             >
-            <b-dropdown-item :to="localePath('#')">Messages</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/userprofile')"
+            <!-- <b-dropdown-item :to="localePath('#')">Messages</b-dropdown-item> -->
+            <b-dropdown-item :to="localePath('/userProfile/profile')"
               >Account settings</b-dropdown-item
             >
-            <b-dropdown-item :to="localePath('/useraccount/mypurchase')"
+            <b-dropdown-item :to="localePath('/userAccount/mypurchase')"
               >Purchage history</b-dropdown-item
             >
           </div>
@@ -175,7 +193,7 @@
               >Account settings</b-dropdown-item
             >
           </div>
-          <b-dropdown-item to="/" @click.prevent="showLogOutInfo()"
+          <b-dropdown-item @click.prevent="showLogOutInfo"
             >Logout</b-dropdown-item
           >
         </b-dropdown>
@@ -209,10 +227,11 @@ export default {
 
   methods: {
     showLogOutInfo() {
+      this.showToast('info', 'Xabar', 'Akkauntdan chiqdingiz')
       this.$auth.logout()
       this.$store.dispatch('instructorsPage/clearPhoneNumber')
       this.$store.dispatch('instructorsPage/clearMentorProfile')
-      this.showToast('info', 'Xabar', 'Akkauntdan chiqdingiz')
+      this.$router.push(this.localePath({ name: 'index' }))
     },
   },
 
@@ -223,6 +242,11 @@ export default {
         fName: fullName[0],
         lName: fullName[1],
       }
+    },
+    badge() {
+      return this.$store.getters['userModule/getNotificationBadge'].length == 0
+        ? false
+        : this.$store.getters['userModule/getNotificationBadge'].length
     },
   },
 }

@@ -14,7 +14,9 @@ export default {
   },
   mixins: [Spinner],
   created() {
-    this.$store.dispatch('instructorsPage/initAllCoursesList')
+    this.$store
+      .dispatch('instructorsPage/initAllCoursesList')
+      .then((res) => this.isLoadingToggle())
   },
 }
 </script>

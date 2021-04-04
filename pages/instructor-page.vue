@@ -114,7 +114,6 @@
 <script>
 import { instructorPageRedirect } from '~/middleware'
 export default {
-  created() {},
   middleware: [instructorPageRedirect],
   name: 'instructor-page',
   layout: 'userAccount',
@@ -127,6 +126,6 @@ export default {
 }
 .instructorPage__nav {
   position: relative;
-  z-index: 999999 !important;
+  z-index: 99 !important;
 }
 </style>

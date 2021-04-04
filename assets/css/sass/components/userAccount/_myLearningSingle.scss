@@ -1,0 +1,261 @@
+.myLearningSingle {
+  position: relative;
+
+  &__wrapper {
+    margin-right: 25%;
+    padding: 0 0 5rem;
+  }
+
+  &__video {
+    height: 35rem;
+  }
+
+  &__description {
+    padding: 0 15%;
+    display: flex;
+    flex-direction: column;
+    &__box {
+      padding: 4rem 0;
+      display: flex;
+      flex-direction: column;
+      &:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+      }
+
+      & h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      & div {
+        display: flex;
+        align-items: center;
+        & div {
+          margin-left: 5%;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      & h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      & span {
+        margin-left: 18%;
+      }
+
+      & img {
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__list {
+    top: 5rem;
+    right: 0;
+    height: 100vh;
+    width: 25%;
+    min-width: 25%;
+    border-left: 1px solid #ccc;
+    position: fixed;
+    overflow-y: scroll;
+    &__scroll {
+      top: 0;
+    }
+    &__toggler {
+      & .btn {
+        margin: 0 !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        border: none;
+        border-top: 1px solid #ccc;
+        padding: 1rem;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f7f8fa !important;
+        transition: all 0.2s;
+        &:hover {
+          background-color: #f2f3f5 !important;
+        }
+
+        &:focus {
+          box-shadow: none !important;
+        }
+
+        & h3 {
+          font-size: 0.95rem;
+          font-weight: bold;
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+      .collapsed > .when-open,
+      .not-collapsed > .when-closed {
+        display: none;
+      }
+      & .card {
+        border: none !important;
+
+        & .card-body {
+          padding: 0;
+        }
+      }
+    }
+
+    &__title {
+      padding: 1.1rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      & h2 {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.9);
+      }
+    }
+    &__content {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0.9rem 1rem;
+      color: rgba(0, 0, 0, 0.9);
+
+      &__active {
+        background-color: #f2f3f5;
+      }
+
+      &:hover {
+        background-color: #f2f3f5;
+      }
+
+      & i {
+        color: #676ed1;
+        margin-right: 0.5rem;
+      }
+    }
+
+    &__icon {
+      font-size: 0.95rem;
+      color: rgba(0, 0, 0, 0.9);
+    }
+  }
+
+  .learningVideo {
+    &__video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      &:focus {
+        outline: none;
+      }
+    }
+    &__file {
+      background-color: #f6fdff;
+      height: 100%;
+      width: 100%;
+      padding: 10% 15%;
+      flex-direction: column;
+
+      & h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+
+      & a {
+        &,
+        &:link,
+        &:visited {
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: bold;
+          display: inline-block;
+          padding: 0.4rem 0.8rem;
+          background-color: #2d3fa7;
+          color: #fff;
+          border-radius: 10px;
+          transition: all 0.3s;
+        }
+
+        &:hover {
+          background-color: #2d3a86;
+          transform: translateY(-0.15rem);
+        }
+
+        &:active {
+          transform: translateY(-0.1rem);
+        }
+      }
+    }
+  }
+}
+
+.learningCart {
+  text-decoration: none;
+  height: 13rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+  transition: all 0.3s;
+
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
+  }
+
+  &:hover &__photo div i {
+    font-size: 3.2rem;
+  }
+
+  &__photo {
+    position: relative;
+    height: 100%;
+    & div {
+      top: 0;
+      left: 0;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & i {
+        font-size: 2.8rem;
+        color: #fff;
+        transition: all 0.3s;
+      }
+    }
+  }
+
+  & img {
+    border-radius: 20px;
+    object-fit: cover;
+    height: 100%;
+    width: 15rem;
+  }
+
+  & h1 {
+    font-size: 1.28571429rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  & h4 {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.9);
+  }
+}

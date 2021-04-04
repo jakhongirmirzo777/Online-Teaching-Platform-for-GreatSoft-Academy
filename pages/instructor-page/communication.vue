@@ -11,6 +11,9 @@ import Spinner from '~/utils/spinner.js'
 export default {
   mixins: [Spinner],
   components: { OnGoingPage },
+  created() {
+    this.isLoadingToggle()
+  },
 }
 </script>
 

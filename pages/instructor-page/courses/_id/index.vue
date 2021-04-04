@@ -9,7 +9,12 @@
           </div>
           <div class="col-md-9 col-xs-9 col-sm-9 p-0">
             <keep-alive>
-              <component :is="component" :courseData="singleCourse"></component>
+              <component
+                :is="component"
+                :courseArr="courseArrays"
+                :courseCurriculum="singleCourseCurriculum"
+                :courseData="singleCourse"
+              ></component>
             </keep-alive>
           </div>
         </div>
@@ -30,16 +35,15 @@ export default {
     'courses-land-page': CoursesLandPage,
     Sidebar,
   },
-  created() {
-    this.$store.dispatch(
-      'instructorsPage/initSingleCourse',
-      this.$route.params.id
-    )
-  },
   data() {
     return {
       component: 'courses-field',
     }
+  },
+  created() {
+    this.$store
+      .dispatch('instructorsCurriculum/initAllSections', this.$route.params.id)
+      .then((res) => this.isLoadingToggle())
   },
   methods: {
     handleCurriculum(boolean) {
@@ -55,9 +59,57 @@ export default {
     },
   },
   computed: {
+    singleCourseCurriculum() {
+      if (
+        this.$store.getters['instructorsCurriculum/getSingleCourseCurriculum']
+      ) {
+        return this.$store.getters[
+          'instructorsCurriculum/getSingleCourseCurriculum'
+        ]
+      } else {
+        return null
+      }
+    },
+    courseArrays() {
+      const curArr = this.$store.getters[
+        'instructorsCurriculum/getSingleCourseCurriculum'
+      ]
+      if (curArr) {
+        const lectureEditArr = []
+        const lectureEditMod = []
+        for (let i = 0; i < curArr.length; i++) {
+          const data = curArr[i].lectures.map((item) => false)
+          lectureEditArr.push({
+            lectureArr: data,
+          })
+        }
+        for (let i = 0; i < curArr.length; i++) {
+          const data = curArr[i].lectures.map((item) => {
+            return {
+              name: '',
+              file: '',
+              preview: item.file,
+              label: 'File/Video',
+            }
+          })
+          lectureEditMod.push({
+            lectureMod: data,
+          })
+        }
+        return {
+          sectionEditArray: new Array(curArr.length).fill(false),
+          lectureAddArray: new Array(curArr.length).fill(false),
+          lectureEditArray: lectureEditArr,
+        }
+      } else {
+        return null
+      }
+    },
     singleCourse() {
-      if (this.$store.getters['instructorsPage/getSingleCourse']) {
-        return this.$store.getters['instructorsPage/getSingleCourse']
+      if (this.$store.getters['instructorsCurriculum/getSingleCourse']) {
+        return this.$store.getters['instructorsCurriculum/getSingleCourse']
+      } else {
+        return null
       }
     },
   },

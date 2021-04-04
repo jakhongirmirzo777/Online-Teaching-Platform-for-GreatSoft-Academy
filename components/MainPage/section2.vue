@@ -6,7 +6,7 @@
         }}<span class="text-h1-span"> {{ $t('section2.SubTitle') }}</span>
       </h1>
     </div>
-    <div class="row row-wrapper">
+    <div class="row row-wrapper justify-center">
       <div
         class="col-md-6 col-sm-12 flex justify-center items-center mb-6 video-container"
       >

@@ -8,6 +8,30 @@ export default {
     ContactUs: "Biz bilan bog'laning",
     Instructor: "O'qituvchi profili",
     signUp: "Ro'yxatdan o'tish",
+    InstructorMain: "Instruktor bo'ling",
+  },
+
+  ///////////////////////////////
+  //////////////////////////////
+  toastNameSuccess: {
+    Title: 'Muvafaqiyatli',
+    Body: 'Ismingizni muvaffaqiyatli tahrirladingiz',
+  },
+
+  toastNameError: {
+    Title: 'Xatolik',
+    Body: "Ismingizni tahrirlay olmadingiz. Iltimos, ma'lumotlarni tekshiring",
+  },
+
+  toastPhotoSuccess: {
+    Title: 'Muvafaqiyatli',
+    Body: "Siz rasimingizni muvaffaqiyatli o'zgartirdingiz",
+  },
+
+  toastPhotoError: {
+    Title: 'Xatolik',
+    Body:
+      "Siz rasimingizni o'zgartira olmadingiz. Iltimos, ma'lumotlarni tekshiring",
   },
 
   ///////////////////////////////
